@@ -1,0 +1,58 @@
+.form_wrapper {
+    display: none;
+}
+form {
+    background-color: white;
+    width: 35%;
+    min-width: 380px;
+    height: 445px;
+    margin: 6% auto;
+}
+
+.form-header {
+    background-color: black;
+    color:white;
+    text-align: center;
+    height:58px;
+}
+
+input[type=text],[type=password]{
+    display: block;
+    width: 79%;
+    box-sizing: border-box;
+    height: 2.4375rem;
+    margin: 28px 43px 1rem;
+    padding: .5rem;
+    font-size: 1rem;
+    font-weight: 400;
+    border: 1px solid #cacaca;
+    border-radius: 0;
+    background-color: #fefefe;
+    box-shadow: inset 0 1px 2px hsla(0,0%,4%,.1);
+    font-family: inherit;
+    color: #0a0a0a;
+    -webkit-transition: border-color .25s ease-in-out,-webkit-box-shadow .5s;
+    transition: box-shadow .5s,border-color .25s ease-in-out;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.submit-btn {
+    height: 38px;
+    width: 66px;
+    text-align: center;
+    cursor: default;
+    color: white;
+    background-color: #1976D2;
+    border-width: 0px;
+    padding: 7px;
+    vertical-align: top;
+    margin: 0 auto;
+    float: none;
+    display: block;
+}
+
+.submit-btn:hover {
+    background-color:#63aaf1;
+}    
