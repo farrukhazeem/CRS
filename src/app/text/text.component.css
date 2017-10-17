@@ -1,0 +1,7 @@
+.text_wrapper {
+    padding: 10px 20px;
+}
+
+.text_wrapper p {
+    text-align: justify;
+}

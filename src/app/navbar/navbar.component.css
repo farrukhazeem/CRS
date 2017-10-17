@@ -34,7 +34,8 @@ li a:hover:not(.active) {
 
 .nav_logo {
     color: #228b22;
-    text-align: center;
+    float: left;
+    margin: 8px 16px;
 }
 
 .nav-right {
@@ -65,19 +66,22 @@ li a:hover:not(.active) {
     display: none;
     position: fixed;
     background-color: #f9f9f9;
-    min-width: 160px;
+    max-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+    padding: 0px;
 }
 
-.dropdown-content a {
+.dropdown-content li {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+    width: 100%;
+    cursor: pointer;
 }
 
-.dropdown-content a:hover {background-color: #f1f1f1}
+.dropdown-content li:hover {background-color: #f1f1f1}
 
 .dropdown:hover .dropdown-content {
     display: block;
