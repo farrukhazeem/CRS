@@ -1,5 +1,7 @@
 .text_wrapper {
     padding: 10px 20px;
+    width: 74%;
+    display: inline-block;
 }
 
 .text_wrapper p {

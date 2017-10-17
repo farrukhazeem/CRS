@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FormxComponent } from './formx/formx.component';
 import { TextComponent } from './text/text.component';
+import { ContactformComponent } from './contactform/contactform.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { TextComponent } from './text/text.component';
     NavbarComponent,
     FormxComponent,
     TextComponent,
+    ContactformComponent,
     
   ],
   imports: [
