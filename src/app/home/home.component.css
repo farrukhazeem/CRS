@@ -1,0 +1,7 @@
+.img1 {
+    width: 100%;
+    height: 392px;
+    background-image: url("../../assets/young-people.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
