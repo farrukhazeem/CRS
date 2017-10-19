@@ -1,5 +1,5 @@
 .form_wrapper {
-    width: 35%;
+    width: 30%;
     margin: 6% auto;
 }
 form {
@@ -16,7 +16,7 @@ form {
     height:58px;
 }
 
-input[type=text],[type=password]{
+input[type=text],[type=password],[type=email]{
     display: block;
     width: 79%;
     box-sizing: border-box;

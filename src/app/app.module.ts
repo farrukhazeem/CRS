@@ -17,7 +17,21 @@ import { NewjobComponent } from './newjob/newjob.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { SignupComponent } from './signup/signup.component';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabase  } from 'angularfire2/database';
+import { AdminComponent } from './containers/admin/admin.component';
+import { CompanyComponent } from './containers/company/company.component';
+import { StudentComponent } from './containers/student/student.component';
 
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyDfgQh8VhYS7NBdARyRC3iMQ3jfPCr3Zo0",
+  authDomain: "crsystem-a382f.firebaseapp.com",
+  databaseURL: "https://crsystem-a382f.firebaseio.com",
+  projectId: "crsystem-a382f",
+  storageBucket: "crsystem-a382f.appspot.com",
+  messagingSenderId: "455824595324"
+};
 
 @NgModule({
   declarations: [
@@ -31,14 +45,18 @@ import { SignupComponent } from './signup/signup.component';
     PostedjobComponent,
     NewjobComponent,
     AboutusComponent,
-    SignupComponent
+    SignupComponent,
+    AdminComponent,
+    CompanyComponent,
+    StudentComponent
     
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule,
     HttpModule,
+    ReactiveFormsModule,
+    
     RouterModule,
     RouterModule.forRoot([
       {
@@ -69,9 +87,11 @@ import { SignupComponent } from './signup/signup.component';
       }
 
 
-    ])
+    ]),
+    AngularFireModule.initializeApp(firebaseConfig)
+    
  ],
-  providers: [],
+  providers: [AngularFireDatabase],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

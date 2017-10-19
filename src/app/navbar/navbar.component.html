@@ -1,35 +1,42 @@
 <div class="nav_wrapper">
-    <h3 class="nav_logo">CRS</h3>
-    <ul>
-      <li><a routerLinkActive="active" routerLink="/home">Home</a></li>
-      <li><a routerLinkActive="active" routerLink="/postedjob">View posted job</a></li>
-      <li><a routerLinkActive="active" routerLink="/newjob">Add New Job</a></li>
-      <li><a routerLinkActive="active" routerLink="/aboutus">About Us</a></li>
-    </ul>
-        <div class="nav-right">
-        
-      <div class="dropdown">
-          <button class="dropbtn" id="signInBtn">
-            <a routerLink="/"> Sign In </a>
-          </button>
-        <!-- <ul class="dropdown-content">
+  <h3 class="nav_logo">CRS</h3>
+  <ul>
+    <li>
+      <a routerLinkActive="active" routerLink="/home">Home</a>
+    </li>
+    <li>
+      <a routerLinkActive="active" routerLink="/postedjob">View posted job</a>
+    </li>
+    <li>
+      <a routerLinkActive="active" routerLink="/newjob">Add New Job</a>
+    </li>
+    <li>
+      <a routerLinkActive="active" routerLink="/aboutus">About Us</a>
+    </li>
+  </ul>
+  <div class="nav-right">
+    <div class="dropdown">
+      <button class="dropbtn" id="signInBtn">
+        <a routerLink="/"> Sign In </a>
+      </button>
+      <!-- <ul class="dropdown-content">
           <li class="admin" data-login-as="admin" (click)="loginUser($event)">Admin</li>
           <li class="company" data-login-as="company" (click)="loginUser($event)">Company</li>
           <li class="std" data-login-as="student" (click)="loginUser($event)">Student</li>
         </ul> -->
-      </div>
-    
-      <div class="dropdown">
-        <button class="dropbtn" id="signUpBtn">
-          <a routerLink="/signup"> Sign Up </a>
-        </button>
-        <!-- <ul class="dropdown-content">
+    </div>
+
+    <div class="dropdown">
+      <button class="dropbtn" id="signUpBtn">
+        <a routerLink="/signup"> Sign Up </a>
+      </button>
+      <!-- <ul class="dropdown-content">
           <li>Admin</li>
           <li>Company</li>
           <li>Student</li>
         </ul> -->
-      </div>
     </div>
-  
+  </div>
+
 </div>
 <router-outlet></router-outlet>
