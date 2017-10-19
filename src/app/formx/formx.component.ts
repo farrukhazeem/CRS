@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./formx.component.css']
 })
 export class FormxComponent implements OnInit {
-  isLoginShown = false;
+  isLoginShown = true;
   constructor() { }
 
   ngOnInit() {

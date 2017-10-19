@@ -1,0 +1,27 @@
+<div class="form_wrapper" routerLink="signup">
+  <form>
+    <div class="form-header">
+          <h2>Sign up</h2>
+        </div> 
+        <div>
+        <input type="text" name="name" placeholder="First Name" />
+        <input type="text" name="name" placeholder="Last Name" />
+        <input class="username" type="text" placeholder="Username"/>
+        <input type="email" name="email-address" placeholder="Email Address">
+        <input class="password" type="password" placeholder="Password"/>
+        <input type="password" name="name" placeholder="Confirm your Password">
+        </div>
+        <div>
+            <input id="radio_student" name="role" checked type="radio" value="Student" />
+            <label for="radio_student">Student</label>
+        </div>
+        
+        <div>
+            <input id="radio_company" name="role" type="radio" value="Company" />
+            <label for="radio_company">Company</label>
+        </div>
+        
+        
+        <button class="btn btn-primary submit-btn" (click)="signup()">Sign up</button>
+  </form>
+</div>
