@@ -56,3 +56,11 @@ input[type=text],[type=password],[type=email]{
 .submit-btn:hover {
     background-color:#63aaf1;
 }    
+label {
+    display: block;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.8;
+    color: #0a0a0a;
+    margin: 10px 43px;
+}

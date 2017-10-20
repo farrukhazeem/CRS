@@ -1,0 +1,18 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    background-color: #151b1e;
+    color: white;
+    width: 200px;
+    height: 593px;
+}
+
+.sidebar .nav-link{
+    display: block;
+    padding: 0.75rem 1rem;
+}
+
+.sidebar .nav-link.active{
+    color: #fff;
+    background: #33444c;
+}

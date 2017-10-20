@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl,FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable} from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-formx',
@@ -14,7 +15,7 @@ export class FormxComponent implements OnInit {
   email:'';
   username:'';
   password:'';
-  constructor(private fb: FormBuilder) { 
+  constructor(private fb: FormBuilder, private router: Router) { 
 
     this.myForm = fb.group({
       'email': ['admin@gmail.com'],
@@ -28,9 +29,13 @@ export class FormxComponent implements OnInit {
   }
 
   onSubmit(value: any): void {
-    this.email= value.emai;
+    this.email= value.email;
     this.username= value.username;
     this.password= value.password;
+
+    if(this.email && this.password) {
+      this.router.navigateByUrl('/admin');
+    }
   }
 
 }

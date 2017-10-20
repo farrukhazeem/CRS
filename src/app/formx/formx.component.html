@@ -1,12 +1,12 @@
-<div class="form_wrapper" routerLink="/">
+<div class="form_wrapper">
   <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
     <div class="form-header">
       <h2>Sign In</h2>
     </div>
     <div>
-      <input id="email" placeholder="Email" type="email" [formControl]="myForm.controls['email']" />
-      <input class="username" type="text" placeholder="Username" formControl]="myForm.controls['username']" />
-      <input class="password" type="password" placeholder="Password" [formControl]="myForm.controls['password']" />
+     <label>Email</label> <input id="email" placeholder="Email" type="email" [formControl]="myForm.controls['email']" />
+     <label>Username</label>  <input class="username" type="text" placeholder="Username" [formControl]="myForm.controls['username']" />
+     <label>Password</label>  <input class="password" type="password" placeholder="Password" [formControl]="myForm.controls['password']" />
 
       <button class="btn btn-primary submit-btn">Sign In</button>
     </div>

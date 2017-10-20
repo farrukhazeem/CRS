@@ -84,6 +84,10 @@ export const firebaseConfig = {
       {
         path: 'aboutus',
         component: AboutusComponent
+      },
+      {
+        path: 'admin',
+        component: AdminComponent
       }
 
 
