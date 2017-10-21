@@ -43,6 +43,7 @@ li a:hover:not(.active) {
     position: relative;
     float: right;
     right: 0px;
+    margin-top: 8px;
 }
 
 /* Drop down CSS Starts */

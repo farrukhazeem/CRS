@@ -23,6 +23,11 @@ import { AdminComponent } from './containers/admin/admin.component';
 import { CompanyComponent } from './containers/company/company.component';
 import { StudentComponent } from './containers/student/student.component';
 
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {
+  MatButtonModule,
+  MatCheckboxModule,
+  MatRadioModule} from '@angular/material';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDfgQh8VhYS7NBdARyRC3iMQ3jfPCr3Zo0",
@@ -55,6 +60,10 @@ export const firebaseConfig = {
     BrowserModule,
     FormsModule,
     HttpModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatRadioModule,
+    BrowserAnimationsModule,
     ReactiveFormsModule,
     
     RouterModule,

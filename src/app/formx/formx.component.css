@@ -18,10 +18,10 @@ form {
 
 input[type=text],[type=password],[type=email]{
     display: block;
-    width: 79%;
+    width: 100%;
     box-sizing: border-box;
     height: 2.4375rem;
-    margin: 28px 43px 1rem;
+    margin-top: 28px;
     padding: .5rem;
     font-size: 1rem;
     font-weight: 400;
@@ -56,11 +56,8 @@ input[type=text],[type=password],[type=email]{
 .submit-btn:hover {
     background-color:#63aaf1;
 }    
-label {
-    display: block;
-    font-size: .875rem;
-    font-weight: 400;
-    line-height: 1.8;
-    color: #0a0a0a;
-    margin: 10px 43px;
+
+.form_padding {
+    padding: 0px 43px;
 }
+

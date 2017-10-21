@@ -19,10 +19,10 @@ form {
 
 input[type=text],[type=password],[type=email]{
     display: block;
-    width: 79%;
+    width: 100%;
     box-sizing: border-box;
     height: 2.4375rem;
-    margin: 28px 43px 1rem;
+    margin: 28px 0px;
     padding: .5rem;
     font-size: 1rem;
     font-weight: 400;
@@ -31,7 +31,7 @@ input[type=text],[type=password],[type=email]{
     background-color: #fefefe;
     box-shadow: inset 0 1px 2px hsla(0,0%,4%,.1);
     font-family: inherit;
-    color: #ffffff;
+    color: #070707;
     -webkit-transition: border-color .25s ease-in-out,-webkit-box-shadow .5s;
     transition: box-shadow .5s,border-color .25s ease-in-out;
     -webkit-appearance: none;
@@ -58,3 +58,11 @@ input[type=text],[type=password],[type=email]{
 .submit-btn:hover {
     background-color:#63aaf1;
 }    
+
+.form_padding {
+    padding: 0px 43px;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+    padding-right: 16px;
+}
