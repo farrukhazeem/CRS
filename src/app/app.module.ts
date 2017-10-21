@@ -105,7 +105,13 @@ export const firebaseConfig = {
       {
         path: 'company',
         component: CompanyComponent
+      },
+      {
+        path: 'student',
+        component: StudentComponent
       }
+       
+    
      
 
     ]),

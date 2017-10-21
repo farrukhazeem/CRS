@@ -1,0 +1,41 @@
+.adminPanel {
+    margin:20px;
+    height: 500px;
+    width: 220px;
+    text-align: center;
+    background-color: #E6EE9C;
+    display: inline-block;
+    
+    }
+
+    .adminimage{
+        margin-top: 10px;
+    }
+
+.mat-button{
+
+    width: 100%;
+}
+
+.views{
+margin-top: 10px;
+text-align: left;
+background-color: white;
+
+}
+.admin-wrapper{
+padding-top: 5px;
+background-color: #000000;
+color:whitesmoke;
+width: 100%;
+height:35px;
+}
+
+.stdcmp {
+    position: relative;
+    width: calc(100% - 325px);
+    height: 500px;
+    margin: 20px;
+    display: inline-block;
+    vertical-align: top;;
+}
