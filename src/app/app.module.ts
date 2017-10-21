@@ -27,7 +27,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatButtonModule,
   MatCheckboxModule,
-  MatRadioModule} from '@angular/material';
+  MatRadioModule,
+  MatCardModule,
+  MatSidenavModule} from '@angular/material';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDfgQh8VhYS7NBdARyRC3iMQ3jfPCr3Zo0",
@@ -63,6 +65,8 @@ export const firebaseConfig = {
     MatButtonModule,
     MatCheckboxModule,
     MatRadioModule,
+    MatSidenavModule,
+    MatCardModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     
@@ -97,8 +101,12 @@ export const firebaseConfig = {
       {
         path: 'admin',
         component: AdminComponent
+      },
+      {
+        path: 'company',
+        component: CompanyComponent
       }
-
+     
 
     ]),
     AngularFireModule.initializeApp(firebaseConfig)

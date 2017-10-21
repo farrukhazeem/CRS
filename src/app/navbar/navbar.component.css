@@ -45,6 +45,9 @@ li a:hover:not(.active) {
     right: 0px;
     margin-top: 8px;
 }
+.nav-right a{
+    color: white;
+}
 
 /* Drop down CSS Starts */
 
