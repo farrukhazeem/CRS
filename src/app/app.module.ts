@@ -29,6 +29,7 @@ import {
   MatCheckboxModule,
   MatRadioModule,
   MatCardModule,
+  MatToolbarModule,
   MatSidenavModule} from '@angular/material';
 
 export const firebaseConfig = {
@@ -65,6 +66,7 @@ export const firebaseConfig = {
     MatButtonModule,
     MatCheckboxModule,
     MatRadioModule,
+    MatToolbarModule,
     MatSidenavModule,
     MatCardModule,
     BrowserAnimationsModule,
