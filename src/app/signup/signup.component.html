@@ -5,17 +5,19 @@
     </div>
     <div class="form_padding">
       <input class="username" type="text" placeholder="Username" />
-      <input type="email" name="email-address" placeholder="Email Address">
+      <input type="email" id="email" name="email-address" placeholder="Email Address"  />
       <input class="password" type="password" placeholder="Password" />
-      <input type="password" name="name" placeholder="Confirm your Password">
+      <input type="password" name="name" placeholder="Confirm your Password"/>
 
       <strong>Signup As</strong>
       <mat-radio-group>
         <mat-radio-button value="1">Company</mat-radio-button>
         <mat-radio-button value="2">Student</mat-radio-button>
       </mat-radio-group>
-      <button mat-raised-button color="primary" (click)="signup()">Sign up</button>
+      <button mat-raised-button color="primary">Sign up</button>
     </div>
     
   </form>
 </div>
+
+

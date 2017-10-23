@@ -1,3 +1,4 @@
+import { AuthService } from './core/auth.service';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -19,6 +20,7 @@ import { SignupComponent } from './signup/signup.component';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabase  } from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
 import { AdminComponent } from './containers/admin/admin.component';
 import { CompanyComponent } from './containers/company/company.component';
 import { StudentComponent } from './containers/student/student.component';
@@ -120,7 +122,7 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig)
     
  ],
-  providers: [AngularFireDatabase],
+  providers: [AngularFireDatabase,AuthService, AngularFireAuth],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

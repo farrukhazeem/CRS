@@ -13,11 +13,6 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
 
-  loginUser(event) {
-    const loginAs = event.target.getAttribute("data-login-as");
-    console.log(loginAs);
 
-
-  }
 
 }
