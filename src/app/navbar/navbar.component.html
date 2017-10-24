@@ -8,14 +8,16 @@
       <a routerLinkActive="active" routerLink="/aboutus">About Us</a>
     </li>
   </ul>
-  <div class="nav-right">
+  <div class="nav-right" *ngIf="!isShownLogout">
     <button mat-raised-button color="accent">
       <a routerLink="/"> Sign In </a>
     </button>
     <button mat-raised-button color="accent">
       <a routerLink="/signup"> Sign Up </a>
     </button>
-  
+    <button mat-raised-button color="accent" (click)="signOut()">
+      Sign out
+    </button>
 </div>
 </mat-toolbar>
 

@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { FormxComponent } from '../formx/formx.component';
+import { Router, RouterModule } from '@angular/router';
+import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth'
+import { Observable } from 'rxjs/Observable';
+import { AuthService } from '../core/auth.service';
+import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 
 @Component({
   selector: 'app-navbar',
@@ -8,10 +13,30 @@ import { FormxComponent } from '../formx/formx.component';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  authState: any = null;
+  users: Observable<any[]>;
+
+  isShownLogout: boolean;
+  constructor(private router: Router, public authService: AuthService,private af: AngularFireAuth,
+    private db: AngularFireDatabase,) {
+   }
 
   ngOnInit() {
+    console.log(this.authService.currentUserId)
   }
+  
+  signOut() {
+    this.authService.signOut();
+  } 
+  
+
+  // ngOnChanges() {
+  //   console.log(this.router.url);
+  //   if(this.router.url === '/' || this.router.url === '/signup'){
+  //     this.isShownLogout=true;
+  //   }
+  //   this.isShownLogout=false;
+  // }
 
 
 
