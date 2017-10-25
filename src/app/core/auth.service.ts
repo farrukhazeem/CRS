@@ -52,7 +52,8 @@ export class AuthService {
     return this.af.auth.createUserWithEmailAndPassword(email, password)
       .then((user) => {
         this.authState = user
-        this.updateUserData()
+        this.updateUserData();
+        return user;
       })
       .catch(error => console.log(error));
   }
@@ -63,6 +64,7 @@ export class AuthService {
         this.authState = user;
         this.updateUserData();
         return user;
+        
       })
       .catch(error => console.log(error));
   }
@@ -80,7 +82,8 @@ export class AuthService {
   //// Sign Out ////
   signOut(): void {
     this.af.auth.signOut();
-    this.router.navigate(['/'])
+    this.router.navigate(['/']);
+    
   }
 
 

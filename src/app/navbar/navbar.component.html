@@ -8,17 +8,21 @@
       <a routerLinkActive="active" routerLink="/aboutus">About Us</a>
     </li>
   </ul>
-  <div class="nav-right" *ngIf="!isShownLogout">
-    <button mat-raised-button color="accent">
-      <a routerLink="/"> Sign In </a>
-    </button>
-    <button mat-raised-button color="accent">
-      <a routerLink="/signup"> Sign Up </a>
-    </button>
-    <button mat-raised-button color="accent" (click)="signOut()">
-      Sign out
-    </button>
-</div>
+  <div class="nav-right">
+    <ng-container *ngIf="!(af.authState | async); else logged_in">
+      <button mat-raised-button color="accent">
+        <a routerLink="/"> Sign In </a>
+      </button>
+      <button mat-raised-button color="accent">
+        <a routerLink="/signup"> Sign Up </a>
+      </button>
+    </ng-container>
+    <ng-template #logged_in>
+      <button mat-raised-button color="accent" (click)="signOut()">
+        Sign out
+      </button>
+    </ng-template>
+  </div>
 </mat-toolbar>
 
 <router-outlet></router-outlet>

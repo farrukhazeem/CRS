@@ -24,6 +24,7 @@ export class SignupComponent implements OnInit {
   email:'';
   username:'';
   password:'';
+  confirmPassword: '';
 
   constructor(private sb: FormBuilder, private router: Router, private db: AngularFireDatabase, public authService: AuthService){ 
     this.usersRef = db.list('users');
@@ -31,17 +32,27 @@ export class SignupComponent implements OnInit {
     this.myGroup = sb.group({
       'email': [null, Validators.compose([Validators.required])],
       'username':[null, Validators.compose([Validators.required])],
-      'password': [null, Validators.compose([Validators.required])]
+      'password': [null, Validators.compose([Validators.required])],
+      'pass2': [null, Validators.compose([Validators.required])],
+      'accountType': ['1']
     });
+    this.users = this.usersRef.snapshotChanges().map(changes => {
+      return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+    })
 
   }
 
+  
 
   ngOnInit() {
   }
-  onSubmit(value: any)  {
-    console.log("Are you here?");
-    }
+  onSubmit(value: any): void  {
+   
+    this.authService.emailSignUp(value.email, value.password).then((data) => {
+      if (data) {
+        this.router.navigateByUrl('/company');
+      }
+  })
 
-
+  }
 }

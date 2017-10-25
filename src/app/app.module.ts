@@ -18,12 +18,15 @@ import { NewjobComponent } from './newjob/newjob.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { SignupComponent } from './signup/signup.component';
 
+
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabase  } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AdminComponent } from './containers/admin/admin.component';
 import { CompanyComponent } from './containers/company/company.component';
 import { StudentComponent } from './containers/student/student.component';
+import { ThanksComponent } from'./thanks/thanks.component';
+
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
@@ -58,7 +61,8 @@ export const firebaseConfig = {
     SignupComponent,
     AdminComponent,
     CompanyComponent,
-    StudentComponent
+    StudentComponent,
+    ThanksComponent
     
   ],
   imports: [
@@ -113,6 +117,10 @@ export const firebaseConfig = {
       {
         path: 'student',
         component: StudentComponent
+      },
+      {
+        path: 'thanks',
+        component: ThanksComponent
       }
        
     
@@ -122,7 +130,7 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig)
     
  ],
-  providers: [AngularFireDatabase,AuthService, AngularFireAuth],
+  providers: [AngularFireDatabase, AuthService, AngularFireAuth],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

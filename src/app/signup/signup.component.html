@@ -1,18 +1,18 @@
 <div class="form_wrapper">
-  <form>
+  <form [formGroup]="myGroup" (ngSubmit)="onSubmit(myGroup.value)">
     <div class="form-header">
       <h2>Sign up</h2>
     </div>
     <div class="form_padding">
-      <input class="username" type="text" placeholder="Username" />
-      <input type="email" id="email" name="email-address" placeholder="Email Address"  />
-      <input class="password" type="password" placeholder="Password" />
-      <input type="password" name="name" placeholder="Confirm your Password"/>
+      <input class="username" type="text" placeholder="Username" [formControl]="myGroup.controls['username']" />
+      <input type="email" id="email" name="email" placeholder="Email Address" [formControl]="myGroup.controls['email']" />
+      <input class="password" type="password" placeholder="Password" [formControl]="myGroup.controls['password']" />
+      <input type="password" name="pass2" placeholder="Confirm your Password" [formControl]="myGroup.controls['pass2']" />
 
       <strong>Signup As</strong>
-      <mat-radio-group>
-        <mat-radio-button value="1">Company</mat-radio-button>
-        <mat-radio-button value="2">Student</mat-radio-button>
+      <mat-radio-group [formControl]="myGroup.controls['accountType']" name="accountType">
+        <mat-radio-button class="radio-bttn" [checked]="true" value="1">Company</mat-radio-button>
+        <mat-radio-button class="radio-bttn" value="2">Student</mat-radio-button>
       </mat-radio-group>
       <button mat-raised-button color="primary">Sign up</button>
     </div>

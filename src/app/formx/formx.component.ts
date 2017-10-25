@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { FormControl,FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable} from 'rxjs';
@@ -6,6 +7,7 @@ import { Router } from '@angular/router';
 import { AngularFireDatabaseModule, AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { AuthService } from '../core/auth.service';
+
 
 @Component({
   selector: 'app-formx',
@@ -42,6 +44,9 @@ export class FormxComponent implements OnInit {
 
 
   ngOnInit() {
+
+  
+
   }
 
   onSubmit(value: any) {
@@ -56,10 +61,10 @@ export class FormxComponent implements OnInit {
       if (data) {
         this.router.navigateByUrl('/admin');
       }
-      
+
     })
-    .catch(error => console.log(error));
-    
+      .catch(error => console.log(error));
+
   }
 
 }
