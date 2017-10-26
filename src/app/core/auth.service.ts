@@ -38,7 +38,7 @@ export class AuthService {
   }
 
   // Returns current user UID
-  get currentUserId(): string {
+  currentUserId(): string {
     return this.authenticated ? this.authState.uid : '';
   }
 
@@ -48,9 +48,13 @@ export class AuthService {
   }
 
   //// Email/Password Auth ////
-  emailSignUp(email: string, password: string) {
+  emailSignUp(email: string, password: string, accountType: string) {
     return this.af.auth.createUserWithEmailAndPassword(email, password)
       .then((user) => {
+        user = {
+          ...user,
+          accountType,
+        }
         this.authState = user
         this.updateUserData();
         return user;
@@ -59,12 +63,15 @@ export class AuthService {
   }
 
   emailLogin(email: string, password: string) {
+
+    console.warn(email, password)
     return this.af.auth.signInWithEmailAndPassword(email, password)
       .then((user) => {
-        this.authState = user;
-        this.updateUserData();
-        return user;
         
+        this.authState = user;
+        // this.updateUserData();
+        return user;
+      
       })
       .catch(error => console.log(error));
   }
@@ -91,12 +98,12 @@ export class AuthService {
   private updateUserData(): void {
     // Writes user name and email to realtime db
     // useful if your app displays information about users or for admin features
-    const path = `users/${this.currentUserId}`; // Endpoint on firebase
+    const path = `users/${this.currentUserId()}`; // Endpoint on firebase
     const userRef: AngularFireObject<any> = this.db.object(path);
-
     const data = {
       email: this.authState.email,
-      name: this.authState.displayName
+      uid: this.authState.uid,
+      accountType: this.authState.accountType
     }
 
     userRef.update(data)

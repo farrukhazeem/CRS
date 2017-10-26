@@ -19,12 +19,11 @@ export class FormxComponent implements OnInit {
   usersRef: AngularFireList<any>;
   myForm: FormGroup;
   users: Observable<any[]>;
-  currentUserKery;
-  
   
   email:'';
   username:'';
   password:'';
+  currentUser;
 
   constructor(private fb: FormBuilder, private router: Router, private db: AngularFireDatabase, public authService: AuthService){ 
 
@@ -33,33 +32,48 @@ export class FormxComponent implements OnInit {
     this.myForm = fb.group({
       'email': [null, Validators.compose([Validators.required])],
       'username':[null, Validators.compose([Validators.required])],
-      'password': [null, Validators.compose([Validators.required])]
+      'password': [null, Validators.compose([Validators.required])],
+      
     });
 
     this.users = this.usersRef.snapshotChanges().map(changes => {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
     })
-
   }
 
-
   ngOnInit() {
+  }
 
-  
-
+  getUserData(key) {
+    this.usersRef.snapshotChanges().map(changes => {
+      return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+    })
+    return new Promise((resolve, reject) => {
+      this.users.subscribe(users => {
+        this.currentUser = users.find((user) => user.key === key);
+        resolve(this.currentUser);
+      });
+    })
   }
 
   onSubmit(value: any) {
-    /*this.email= value.email;
-    this.username= value.username;
-    this.password= value.password;
-
-    if(this.email && this.password && this.username) {
-      this.router.navigateByUrl('/admin');
-    }*/
+    
     this.authService.emailLogin(value.email, value.password).then((data) => {
       if (data) {
-        this.router.navigateByUrl('/admin');
+        const uid = data.uid;
+        this.getUserData(uid).then((usd) => {
+          switch(this.currentUser.accountType) {
+            case 'company':
+              this.router.navigateByUrl('/company');
+              break;
+            case 'student':
+              this.router.navigateByUrl('/student');
+              break;
+            default:
+              this.router.navigateByUrl('/admin');
+              break;
+          }
+        })
       }
 
     })

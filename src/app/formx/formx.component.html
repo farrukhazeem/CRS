@@ -7,7 +7,7 @@
      <input id="email" placeholder="Email" type="email" [formControl]="myForm.controls['email']" />
      <div class="alert" *ngIf="!myForm.controls['email'].valid && myForm.controls['email'].touched">This Field is Required</div>
      <input class="username" type="text" placeholder="Username" [formControl]="myForm.controls['username']" />
-     <div class="alert" *ngIf="!myForm.controls['username'].valid && myForm.controls['username'].touched">This Field is Required</div>
+     <div class="alert" *ngIf="!myForm.controls['username'].valid && myForm.controls['username'].touched">This Field is Required</div> 
      <input class="password" type="password" placeholder="Password" [formControl]="myForm.controls['password']" />
      <div class="alert" *ngIf="!myForm.controls['password'].valid && myForm.controls['password'].touched">This Field is Required</div>
       <button mat-raised-button color="primary">Sign In</button>

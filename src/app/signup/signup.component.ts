@@ -19,12 +19,13 @@ export class SignupComponent implements OnInit {
   usersRef: AngularFireList<any>;
   myGroup: FormGroup;
   users: Observable<any[]>;
-  currentUserKery;
+  currentUserKey;
 
   email:'';
   username:'';
   password:'';
   confirmPassword: '';
+  accountType: '';
 
   constructor(private sb: FormBuilder, private router: Router, private db: AngularFireDatabase, public authService: AuthService){ 
     this.usersRef = db.list('users');
@@ -34,7 +35,7 @@ export class SignupComponent implements OnInit {
       'username':[null, Validators.compose([Validators.required])],
       'password': [null, Validators.compose([Validators.required])],
       'pass2': [null, Validators.compose([Validators.required])],
-      'accountType': ['1']
+      'accountType': [null, Validators.compose([Validators.required])]
     });
     this.users = this.usersRef.snapshotChanges().map(changes => {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
@@ -47,10 +48,19 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
   }
   onSubmit(value: any): void  {
-   
-    this.authService.emailSignUp(value.email, value.password).then((data) => {
+    this.authService.emailSignUp(value.email, value.password, value.accountType ).then((data) => {
       if (data) {
-        this.router.navigateByUrl('/company');
+        switch(data.accountType) {
+          case 'company':
+            this.router.navigateByUrl('/company');
+            break;
+          case 'student':
+            this.router.navigateByUrl('/student');
+            break;
+          default :
+            this.router.navigateByUrl('/admin');
+            break;
+        }
       }
   })
 
