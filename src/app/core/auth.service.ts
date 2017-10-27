@@ -48,11 +48,12 @@ export class AuthService {
   }
 
   //// Email/Password Auth ////
-  emailSignUp(email: string, password: string, accountType: string) {
+  emailSignUp(email: string, password: string,  username: string, accountType: string) {
     return this.af.auth.createUserWithEmailAndPassword(email, password)
       .then((user) => {
         user = {
           ...user,
+          username,
           accountType,
         }
         this.authState = user
@@ -103,6 +104,7 @@ export class AuthService {
     const data = {
       email: this.authState.email,
       uid: this.authState.uid,
+      username: this.authState.username,
       accountType: this.authState.accountType
     }
 
