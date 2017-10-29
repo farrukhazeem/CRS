@@ -48,7 +48,7 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
   }
   onSubmit(value: any): void  {
-    this.authService.emailSignUp(value.email, value.password, value.accountType ).then((data) => {
+    this.authService.emailSignUp(value.email, value.password, value.username,value.accountType ).then((data) => {
       if (data) {
         switch(data.accountType) {
           case 'company':

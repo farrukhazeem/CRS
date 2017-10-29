@@ -55,6 +55,7 @@ export class AuthService {
           ...user,
           username,
           accountType,
+          
         }
         this.authState = user
         this.updateUserData();
@@ -105,6 +106,7 @@ export class AuthService {
       email: this.authState.email,
       uid: this.authState.uid,
       username: this.authState.username,
+      cname: this.authState.cname,
       accountType: this.authState.accountType
     }
 

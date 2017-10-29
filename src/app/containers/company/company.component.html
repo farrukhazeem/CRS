@@ -1,15 +1,58 @@
 <mat-card class="adminPanel">
-  <div class="admin-wrapper">
-     <strong >Company Panel</strong> 
-  </div>  
- <div class="adminimage">
-     <img src="../../../assets/Images/user-image.jpg" >
- </div>
- <div class="views">
-     <a mat-button routerLink=".">Add New Job</a>
-     <a mat-button routerLink=".">View Posted Jobs</a>
-     <a mat-button routerLink=".">View Student Data</a>
- </div>
- 
- </mat-card>
- <mat-card class="stdcmp"> Company Contents</mat-card>
+    <div class="admin-wrapper">
+        <strong>Company Panel</strong>
+    </div>
+    <div class="adminimage">
+        <img src="../../../assets/Images/user-image.jpg">
+    </div>
+    <h3>{{ company_username }}</h3>
+    <div class="views">
+        <a mat-button routerLink=".">Add New Job</a>
+        <a mat-button routerLink=".">View Posted Jobs</a>
+        <a mat-button routerLink=".">View Student Data</a>
+    </div>
+
+</mat-card>
+<mat-card class="stdcmp">
+    <mat-tab-group>
+        <mat-tab label="Edit Profile">
+            <form [formGroup]="myGroup3" (ngSubmit)="onSubmit(myGroup3.value)">
+                <div class="form-header">
+                    <h3>Edit Your Company Profile</h3>
+                    <input class="username" type="text" placeholder="Username" value={{company_username}} [formControl]="myGroup3.controls['company_username']"
+                    />
+                    <div class="alert" *ngIf="!myGroup3.controls['company_username'].valid && myGroup3.controls['company_username'].touched">This Field is Required</div>
+
+                    <input class="cname" type="text" placeholder="Company Name"  [formControl]="myGroup3.controls['cname']" />
+                    <div class="alert" *ngIf="!myGroup3.controls['cname'].valid && myGroup3.controls['cname'].touched">This Field is Required</div>
+
+                    <input class="email" type="text" placeholder="Email" value={{company_email}} [formControl]="myGroup3.controls['company_email']" />
+                    <div class="alert" *ngIf="!myGroup3.controls['company_email'].valid && myGroup3.controls['company_email'].touched">This Field is Required</div>
+
+                    <input class="address" type="text" placeholder="Address"  [formControl]="myGroup3.controls['address']" />
+                    <div class="alert" *ngIf="!myGroup3.controls['address'].valid && myGroup3.controls['address'].touched">This Field is Required</div>
+
+                    <input class="contact" type="text" placeholder="Contact No"  [formControl]="myGroup3.controls['contact']"
+                    />
+                    <div class="alert" *ngIf="!myGroup3.controls['contact'].valid && myGroup3.controls['contact'].touched">This Field is Required</div>
+
+                    <button mat-raised-button color="primary">Update</button>
+                </div>
+
+            </form>
+
+        </mat-tab>
+        <mat-tab label="Add Jobs">
+
+            Add Job
+
+
+
+        </mat-tab>
+        <mat-tab label="View Jobs">View Jobs</mat-tab>
+        <mat-tab label="View Student Details">View Student Details</mat-tab>
+    </mat-tab-group>
+
+
+
+</mat-card>

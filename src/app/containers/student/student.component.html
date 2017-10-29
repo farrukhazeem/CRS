@@ -5,11 +5,44 @@
  <div class="adminimage">
      <img src="../../../assets/Images/user-image.jpg" >
  </div>
+
+ <h3>{{ username }}</h3>
  <div class="views">
     
-     <a mat-button routerLink=".">View Posted Jobs</a>
+     <a mat-button routerLink="/postedjob">View Posted Jobs</a>
  </div>
 
  </mat-card>
+ 
+ <mat-card class="stdcmp">
+        <mat-tab-group>
+                <mat-tab label="Edit Profile">
+                        <form [formGroup]="myGroup2" (ngSubmit)="onSubmit(myGroup2.value)">
+                                <div class="form-header">
+                                 <h3>Edit Your Profile</h3>
+                                 <input class="username" type="text" value={{username}} placeholder="username" [formControl]="myGroup2.controls['username']" />
+                                 <div class="alert" *ngIf="!myGroup2.controls['username'].valid && myGroup2.controls['username'].touched">This Field is Required</div>
+                                 <input class="email" type="text" value={{email}} placeholder="Email" [formControl]="myGroup2.controls['email']" />
+                                 <div class="alert" *ngIf="!myGroup2.controls['email'].valid && myGroup2.controls['email'].touched">This Field is Required</div>
 
- <mat-card class="stdcmp"> Student Content</mat-card>
+                                 <input class="fullname" type="text" value={{fullname}} placeholder="Your Full Name" [formControl]="myGroup2.controls['fullname']" />
+                                 <div class="alert" *ngIf="!myGroup2.controls['fullname'].valid && myGroup2.controls['fullname'].touched">This Field is Required</div>
+                                 <input class="cgpa" type="text" value={{cgpa}} placeholder="CGPA" [formControl]="myGroup2.controls['cgpa']" />
+                                 <div class="alert" *ngIf="!myGroup2.controls['cgpa'].valid && myGroup2.controls['cgpa'].touched">This Field is Required</div>
+                                 
+                                 <input class="skills" type="text" value={{skills}} placeholder="Skills" [formControl]="myGroup2.controls['skills']" />
+                                 <div class="alert" *ngIf="!myGroup2.controls['skills'].valid && myGroup2.controls['skills'].touched">This Field is Required</div>
+                                 
+                                 <input class="experience" type="text" value={{experience}} placeholder="Experience" [formControl]="myGroup2.controls['experience']" />
+                                 <div class="alert" *ngIf="!myGroup2.controls['experience'].valid && myGroup2.controls['experience'].touched">This Field is Required</div>
+                                 
+                                 <button mat-raised-button color="primary">Update</button>
+                                </div>
+                            
+                            </form>
+
+                </mat-tab>
+                <mat-tab label="View Jobs">View Jobs</mat-tab>
+              </mat-tab-group>
+      
+ </mat-card>
