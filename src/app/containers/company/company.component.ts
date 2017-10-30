@@ -18,10 +18,10 @@ import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 export class CompanyComponent {
 
   cname:'';
-  company_email;
+  email;
   address:'';
   contact:'';
-  company_username;
+  username;
 
   usersRef: AngularFireList<any>;
   myGroup3: FormGroup;
@@ -29,13 +29,15 @@ export class CompanyComponent {
   currentUserKey;
   currentUser;
   
+  editPro = {key:'', username:'', cname:'',email:'',address:'',contact:''}
+  editMode = false;
 
   constructor(private sb3: FormBuilder, private router: Router,private af: AngularFireAuth, private db: AngularFireDatabase, public authService: AuthService) {
 
     this.myGroup3 = sb3.group({
-      'company_username': [null, Validators.compose([Validators.required])],
+      'username': [null, Validators.compose([Validators.required])],
       'cname': [null, Validators.compose([Validators.required])],
-      'company_email': [null, Validators.compose([Validators.required])],
+      'email': [null, Validators.compose([Validators.required])],
       'address': [null, Validators.compose([Validators.required])],
       'contact':[null, Validators.compose([Validators.required])]
     });
@@ -49,8 +51,8 @@ export class CompanyComponent {
         if (auth != null) {
           this.users.subscribe(users => {
             this.currentUser = users.find((user) => user.key === auth.uid);
-            this.company_username = this.currentUser.username;
-            this.company_email = this.currentUser.email;     
+            this.username = this.currentUser.username;
+            this.email = this.currentUser.email;     
             this.cname = this.currentUser.cname || '';
             this.address = this.currentUser.address || '';
             this.contact = this.currentUser.contact || '';
@@ -62,6 +64,26 @@ export class CompanyComponent {
   
   ngOnInit() {
     
+  }
+  
+  editProfile(currentUser) {
+    this.editMode = true;
+    this.editPro = { key: this.currentUser.key, username: this.currentUser.username, email: this.currentUser.email, cname: this.currentUser.cname, address: this.currentUser.address, contact: this.currentUser.contact };
+   console.log (this.editPro); 
+  }
+
+
+  cancelEdit() {
+
+    this.editMode = false;
+  }
+
+  updateEdited() {
+    const editedPro = this.editPro;
+    this.usersRef = this.db.list('users');
+    this.usersRef.set(editedPro.key, {username: editedPro.username, email: editedPro.email, cname: editedPro.cname, address:editedPro.address, contact:editedPro.contact} );
+    this.editMode = false;
+
   }
   onSubmit(value: any): void {
     if (value.company_username && value.company_email && value.cname && value.address && value.contact ) {

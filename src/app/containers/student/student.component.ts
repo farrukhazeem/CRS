@@ -32,7 +32,7 @@ export class StudentComponent  {
 
   constructor(private sb2: FormBuilder,private router: Router, private db: AngularFireDatabase, public authService: AuthService,  private af: AngularFireAuth,) {
     this.myGroup2 = sb2.group({
-      'company_username': [null, Validators.compose([Validators.required])],
+      'username': [null, Validators.compose([Validators.required])],
       'email': [null, Validators.compose([Validators.required])],
       'fullname': [null, Validators.compose([Validators.required])],
       'cgpa': [null, Validators.compose([Validators.required])],

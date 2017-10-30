@@ -1,3 +1,4 @@
+<div *ngIf="!editMode"></div>
 <mat-card class="adminPanel">
     <div class="admin-wrapper">
         <strong>Company Panel</strong>
@@ -5,43 +6,107 @@
     <div class="adminimage">
         <img src="../../../assets/Images/user-image.jpg">
     </div>
-    <h3>{{ company_username }}</h3>
+    <h3>{{ username }}</h3>
+    
     <div class="views">
-        <a mat-button routerLink=".">Add New Job</a>
-        <a mat-button routerLink=".">View Posted Jobs</a>
-        <a mat-button routerLink=".">View Student Data</a>
+        <button class="button edit-btn" (click)="editProfile()">Edit Company Profile</button>
+       
     </div>
-
 </mat-card>
+
+<div *ngIf="editMode">
+        <mat-card class="editfor">
+        <form #commentForm="ngForm" novalidate>
+                <div class="form-container">
+                  <label for="name">Username</label>
+                  <input type="text" value={{username}} [(ngModel)]="editPro.username" #username="ngModel" name="username" id="username" class="form-control"
+                   />
+                  <div *ngIf="username.errors && (username.dirty || username.touched)" class="alert alert-danger">
+                    <div [hidden]="!Username.errors.required">Username is Required!</div>
+                  </div>
+            
+                  <label for="name">Company Name</label>
+                  <input id="cname"  type="text" [(ngModel)]="editPro.cname" #cname="ngModel" name="cname" class="form-control"
+                     />
+                 
+                  <div *ngIf="cname.errors && (cname.dirty || cname.touched)" class="alert alert-danger">
+                    <div [hidden]="!cname.errors.required">Company Name is Required!</div>
+                  </div>
+            
+                  <label for="name"> Email</label>
+                  <input id="email"  type="text" value={{email}} [(ngModel)]="editPro.email" #email="ngModel" name="email" class="form-control"
+                     />
+                 
+                  <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
+                    <div [hidden]="!email.errors.required">Email is Required!</div>
+                  </div>
+
+                  <label for="name"> Address </label>
+                  <input id="address"  type="text" [(ngModel)]="editPro.address" #address="ngModel" name="address" class="form-control"
+                     />
+                 
+                  <div *ngIf="address.errors && (address.dirty || address.touched)" class="alert alert-danger">
+                    <div [hidden]="!address.errors.required">Address is Required!</div>
+                  </div>
+
+                  <label for="name"> Contact </label>
+                  <input id="contact"  type="text"  [(ngModel)]="editPro.contact" #contact="ngModel" name="contact" class="form-control"
+                     />
+                 
+                  <div *ngIf="contact.errors && (contact.dirty || contact.touched)" class="alert alert-danger">
+                    <div [hidden]="!contact.errors.required">Contact is Required!</div>
+                  </div>
+
+
+                  <button type="submit" [disabled]="!commentForm.form.valid" class="button" (click)="updateEdited()">Update</button>
+                  <button type="button" class="button" (click)="cancelEdit()">Cancel</button>
+                </div>
+              </form>
+</mat-card>
+
+
+
+
+
+<!--<mat-tab label="Edit Profile">
+    <form #commentForm="ngForm" novalidate>
+        <div class="form-header">
+            <h3>Edit Your Company Profile</h3>
+            <label for="name">Username</label>
+            
+            <input id="username" type="text" [(ngModel)]="editPro.username"placeholder="Username" value={{company_username}} #title="ngModel" name="username" class="form-control"
+            />
+            <div class="alert" *ngIf="!myGroup3.controls['company_username'].valid && myGroup3.controls['company_username'].touched">This Field is Required</div>
+
+            <input id="cname" type="text" placeholder="Company Name"  [formControl]="myGroup3.controls['cname']" />
+            <div class="alert" *ngIf="!myGroup3.controls['cname'].valid && myGroup3.controls['cname'].touched">This Field is Required</div>
+
+            <input id="email" type="text" placeholder="Email" value={{company_email}} [formControl]="myGroup3.controls['company_email']" />
+            <div class="alert" *ngIf="!myGroup3.controls['company_email'].valid && myGroup3.controls['company_email'].touched">This Field is Required</div>
+
+            <input id="address" type="text" placeholder="Address"  [formControl]="myGroup3.controls['address']" />
+            <div class="alert" *ngIf="!myGroup3.controls['address'].valid && myGroup3.controls['address'].touched">This Field is Required</div>
+
+            <input id="contact" type="text" placeholder="Contact No"  [formControl]="myGroup3.controls['contact']"
+            />
+            <div class="alert" *ngIf="!myGroup3.controls['contact'].valid && myGroup3.controls['contact'].touched">This Field is Required</div> 
+
+            <button mat-raised-button color="primary">Update</button>
+        </div>
+
+    </form>
+
+</mat-tab> !-->
+</div>
 <mat-card class="stdcmp">
     <mat-tab-group>
-        <mat-tab label="Edit Profile">
-            <form [formGroup]="myGroup3" (ngSubmit)="onSubmit(myGroup3.value)">
-                <div class="form-header">
-                    <h3>Edit Your Company Profile</h3>
-                    <input class="username" type="text" placeholder="Username" value={{company_username}} [formControl]="myGroup3.controls['company_username']"
-                    />
-                    <div class="alert" *ngIf="!myGroup3.controls['company_username'].valid && myGroup3.controls['company_username'].touched">This Field is Required</div>
-
-                    <input class="cname" type="text" placeholder="Company Name"  [formControl]="myGroup3.controls['cname']" />
-                    <div class="alert" *ngIf="!myGroup3.controls['cname'].valid && myGroup3.controls['cname'].touched">This Field is Required</div>
-
-                    <input class="email" type="text" placeholder="Email" value={{company_email}} [formControl]="myGroup3.controls['company_email']" />
-                    <div class="alert" *ngIf="!myGroup3.controls['company_email'].valid && myGroup3.controls['company_email'].touched">This Field is Required</div>
-
-                    <input class="address" type="text" placeholder="Address"  [formControl]="myGroup3.controls['address']" />
-                    <div class="alert" *ngIf="!myGroup3.controls['address'].valid && myGroup3.controls['address'].touched">This Field is Required</div>
-
-                    <input class="contact" type="text" placeholder="Contact No"  [formControl]="myGroup3.controls['contact']"
-                    />
-                    <div class="alert" *ngIf="!myGroup3.controls['contact'].valid && myGroup3.controls['contact'].touched">This Field is Required</div>
-
-                    <button mat-raised-button color="primary">Update</button>
-                </div>
-
-            </form>
-
-        </mat-tab>
+        <mat-tab label="Company Profile">
+            
+                       CompanyProfile
+            
+            
+            
+                    </mat-tab>
         <mat-tab label="Add Jobs">
 
             Add Job

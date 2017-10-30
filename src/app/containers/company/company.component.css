@@ -16,10 +16,14 @@
     width: 100%;
 }
 
+.editfor {
+  width: 80%;
+}
+
 .views{
 margin-top: 10px;
 text-align: left;
-background-color: white;
+
 
 }
 .admin-wrapper{
