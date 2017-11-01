@@ -20,7 +20,7 @@ export class StudentComponent  {
   skills:'';
   experience:'';
   email:'';
-  company_username:'';
+  username:'';
 
   usersRef: AngularFireList<any>;
   myGroup2: FormGroup;
@@ -29,6 +29,9 @@ export class StudentComponent  {
   currentUser;
 
 
+
+  editPro = {key:'',username:'', fullname:'',email:'', cgpa:'',skills:'',experience:'', accountType:''}
+  editMode = false;
 
   constructor(private sb2: FormBuilder,private router: Router, private db: AngularFireDatabase, public authService: AuthService,  private af: AngularFireAuth,) {
     this.myGroup2 = sb2.group({
@@ -49,7 +52,7 @@ export class StudentComponent  {
         if (auth != null) {
           this.users.subscribe(users => {
             this.currentUser = users.find((user) => user.key === auth.uid);
-            this.company_username = this.currentUser.company_username;
+            this.username = this.currentUser.username;
             this.email = this.currentUser.email;            
             this.fullname = this.currentUser.fullname || '';
             this.cgpa = this.currentUser.cgpa || '';
@@ -65,14 +68,28 @@ export class StudentComponent  {
   ngOnInit() {
 
   }
-  onSubmit(value: any): void {
-    if (value.company_username && value.email && value.fullname && value.cgpa && value.skills && value.experience) {
 
-      this.usersRef = this.db.list('users');
-      this.usersRef.update(this.currentUser.key, { company_username: value.company_username, email: value.email, fullname: value.fullname, cgpa: value.cgpa, skills: value.skills, experience: value.experience });
-    }
+  editProfile(currentUser) {
+    this.editMode = true;
+    this.editPro = { key: this.currentUser.key, username: this.currentUser.username, email: this.currentUser.email, fullname: this.currentUser.fullname, cgpa: this.currentUser.cgpa, skills: this.currentUser.skills, experience: this.currentUser.experience, accountType: this.currentUser.accountType };
+  }
+
+
+  cancelEdit() {
+
+    this.editMode = false;
+  }
+  
+  updateEdited() {
+    const editedPro = this.editPro;
+    this.usersRef = this.db.list('users');
+    this.usersRef.update(editedPro.key, {username: editedPro.username, email: editedPro.email, fullname: editedPro.fullname, cgpa:editedPro.cgpa, skills:editedPro.skills, experience: editedPro.experience, accountType: this.currentUser.accountType} );
+    this.editMode = false;
 
   }
+  
+  
+  
 
 
 }

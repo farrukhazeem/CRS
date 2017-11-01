@@ -17,7 +17,11 @@
 }
 
 .editfor {
-  width: 80%;
+    position: relative;
+    width: calc(100% - 325px);
+    margin: 20px;
+    display: inline-block;
+    vertical-align: top;
 }
 
 .views{

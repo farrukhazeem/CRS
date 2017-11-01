@@ -9,38 +9,76 @@
  <h3>{{ username }}</h3>
  <div class="views">
     
-     <a mat-button routerLink="/postedjob">View Posted Jobs</a>
+    <button class="button edit-btn" (click)="editProfile()">Edit Student Profile</button>
+    
  </div>
 
  </mat-card>
- 
- <mat-card class="stdcmp">
+    <mat-card class="editfor" *ngIf="editMode">
+    <form #commentForm="ngForm" novalidate>
+            <div class="form-container">
+              <label for="name">Username</label>
+              <input type="text" value={{username}} [(ngModel)]="editPro.username" #username="ngModel" name="username" id="username" class="form-control"
+               />
+              <div *ngIf="username.errors && (username.dirty || username.touched)" class="alert alert-danger">
+                <div [hidden]="!Username.errors.required">Username is Required!</div>
+              </div>
+        
+              <label for="name">Full Name</label>
+              <input id="fullname"  type="text" [(ngModel)]="editPro.fullname" #fullname="ngModel" name="fullname" class="form-control"
+                 />
+             
+              <div *ngIf="fullname.errors && (fullname.dirty || fullname.touched)" class="alert alert-danger">
+                <div [hidden]="!fullname.errors.required">Full Name is Required!</div>
+              </div>
+        
+              <label for="name"> Email</label>
+              <input id="email"  type="text" value={{email}} [(ngModel)]="editPro.email" #email="ngModel" name="email" class="form-control"
+                 />
+             
+              <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
+                <div [hidden]="!email.errors.required">Email is Required!</div>
+              </div>
+
+              <label for="name"> CGPA </label>
+              <input id="cgpa"  type="text" [(ngModel)]="editPro.cgpa" #cgpa="ngModel" name="cgpa" class="form-control"
+                 />
+             
+              <div *ngIf="cgpa.errors && (skills.dirty || cgpa.touched)" class="alert alert-danger">
+                <div [hidden]="!cgpa.errors.required">CGPA is Required!</div>
+              </div>
+
+              <label for="name"> Skills </label>
+              <input id="skills"  type="text" [(ngModel)]="editPro.skills" #skills="ngModel" name="skills" class="form-control"
+                 />
+             
+              <div *ngIf="skills.errors && (skills.dirty || skills.touched)" class="alert alert-danger">
+                <div [hidden]="!address.errors.required">Skills are Required!</div>
+              </div>
+
+              <label for="name"> Experience </label>
+              <input id="experience"  type="text"  [(ngModel)]="editPro.experience" #experience="ngModel" name="experience" class="form-control"
+                 />
+             
+              <div *ngIf="experience.errors && (experience.dirty || experience.touched)" class="alert alert-danger">
+                <div [hidden]="!experience.errors.required">Experience is Required!</div>
+              </div>
+
+
+              <button type="submit" [disabled]="!commentForm.form.valid" class="button" (click)="updateEdited()">Update</button>
+              <button type="button" class="button" (click)="cancelEdit()">Cancel</button>
+            </div>
+          </form>
+</mat-card>
+ <mat-card class="stdcmp" *ngIf="!editMode">
         <mat-tab-group>
-                <mat-tab label="Edit Profile">
-                        <form [formGroup]="myGroup2" (ngSubmit)="onSubmit(myGroup2.value)">
-                                <div class="form-header">
-                                 <h3>Edit Your Profile</h3>
-                                 <input class="username" type="text" value={{username}} placeholder="username" [formControl]="myGroup2.controls['username']" />
-                                 <div class="alert" *ngIf="!myGroup2.controls['username'].valid && myGroup2.controls['username'].touched">This Field is Required</div>
-                                 <input class="email" type="text" value={{email}} placeholder="Email" [formControl]="myGroup2.controls['email']" />
-                                 <div class="alert" *ngIf="!myGroup2.controls['email'].valid && myGroup2.controls['email'].touched">This Field is Required</div>
-
-                                 <input class="fullname" type="text" value={{fullname}} placeholder="Your Full Name" [formControl]="myGroup2.controls['fullname']" />
-                                 <div class="alert" *ngIf="!myGroup2.controls['fullname'].valid && myGroup2.controls['fullname'].touched">This Field is Required</div>
-                                 <input class="cgpa" type="text" value={{cgpa}} placeholder="CGPA" [formControl]="myGroup2.controls['cgpa']" />
-                                 <div class="alert" *ngIf="!myGroup2.controls['cgpa'].valid && myGroup2.controls['cgpa'].touched">This Field is Required</div>
-                                 
-                                 <input class="skills" type="text" value={{skills}} placeholder="Skills" [formControl]="myGroup2.controls['skills']" />
-                                 <div class="alert" *ngIf="!myGroup2.controls['skills'].valid && myGroup2.controls['skills'].touched">This Field is Required</div>
-                                 
-                                 <input class="experience" type="text" value={{experience}} placeholder="Experience" [formControl]="myGroup2.controls['experience']" />
-                                 <div class="alert" *ngIf="!myGroup2.controls['experience'].valid && myGroup2.controls['experience'].touched">This Field is Required</div>
-                                 
-                                 <button mat-raised-button color="primary">Update</button>
-                                </div>
-                            
-                            </form>
-
+                <mat-tab label="Student Profile">
+                    <strong> Username:</strong> {{username}} <br>
+                    <strong> Full Name:</strong> {{fullname}} <br>
+                    <strong> Email:</strong> {{email}}<br>
+                    <strong> CGPA:</strong> {{cgpa}} <br>
+                    <strong> Skills:</strong> {{skills}} <br>
+                    <strong> Experience:</strong> {{experience}} 
                 </mat-tab>
                 <mat-tab label="View Jobs">View Jobs</mat-tab>
               </mat-tab-group>

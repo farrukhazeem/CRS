@@ -22,6 +22,9 @@ export class CompanyComponent {
   address:'';
   contact:'';
   username;
+  jt:'';
+  jd:'';
+
 
   usersRef: AngularFireList<any>;
   myGroup3: FormGroup;
@@ -29,7 +32,8 @@ export class CompanyComponent {
   currentUserKey;
   currentUser;
   
-  editPro = {key:'', username:'', cname:'',email:'',address:'',contact:''}
+  addjob= {key:'',jt:'', jd:''}
+  editPro = {key:'',username:'', cname:'',email:'',address:'',contact:'', accountType:''}
   editMode = false;
 
   constructor(private sb3: FormBuilder, private router: Router,private af: AngularFireAuth, private db: AngularFireDatabase, public authService: AuthService) {
@@ -39,7 +43,9 @@ export class CompanyComponent {
       'cname': [null, Validators.compose([Validators.required])],
       'email': [null, Validators.compose([Validators.required])],
       'address': [null, Validators.compose([Validators.required])],
-      'contact':[null, Validators.compose([Validators.required])]
+      'contact':[null, Validators.compose([Validators.required])],
+      'jt': [null, Validators.compose([Validators.required])],
+      'jd':[null, Validators.compose([Validators.required])]
     });
     this.usersRef = db.list('users');
   
@@ -68,7 +74,7 @@ export class CompanyComponent {
   
   editProfile(currentUser) {
     this.editMode = true;
-    this.editPro = { key: this.currentUser.key, username: this.currentUser.username, email: this.currentUser.email, cname: this.currentUser.cname, address: this.currentUser.address, contact: this.currentUser.contact };
+    this.editPro = { key: this.currentUser.key, username: this.currentUser.username, email: this.currentUser.email, cname: this.currentUser.cname, address: this.currentUser.address, contact: this.currentUser.contact, accountType: this.currentUser.accountType };
    console.log (this.editPro); 
   }
 
@@ -81,14 +87,18 @@ export class CompanyComponent {
   updateEdited() {
     const editedPro = this.editPro;
     this.usersRef = this.db.list('users');
-    this.usersRef.set(editedPro.key, {username: editedPro.username, email: editedPro.email, cname: editedPro.cname, address:editedPro.address, contact:editedPro.contact} );
+    this.usersRef.set(editedPro.key, {username: editedPro.username, email: editedPro.email, cname: editedPro.cname, address:editedPro.address, contact:editedPro.contact, accountType: this.currentUser.accountType} );
     this.editMode = false;
 
   }
-  onSubmit(value: any): void {
-    if (value.company_username && value.company_email && value.cname && value.address && value.contact ) {
-      this.usersRef.update(this.currentUser.key, { username: value.company_username, email: value.company_email, cname: value.cname, address: value.address, contact: value.contact });
-    }
+
+  addJob(currentUser) {
+ const added= this.addjob;
+ 
+
+  }
+
+  cancelJob() {
 
   }
 }
