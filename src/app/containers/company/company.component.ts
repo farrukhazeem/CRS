@@ -27,10 +27,13 @@ export class CompanyComponent {
 
 
   usersRef: AngularFireList<any>;
+  jobRef: AngularFireList<any>;
   myGroup3: FormGroup;
   users: Observable<any[]>;
+  jobs: Observable<any[]>;
   currentUserKey;
   currentUser;
+  currentjob;
   
   addjob= {key:'',jt:'', jd:''}
   editPro = {key:'',username:'', cname:'',email:'',address:'',contact:'', accountType:''}
@@ -57,15 +60,48 @@ export class CompanyComponent {
         if (auth != null) {
           this.users.subscribe(users => {
             this.currentUser = users.find((user) => user.key === auth.uid);
+            this.currentUserKey = this.currentUser.key;
             this.username = this.currentUser.username;
-            this.email = this.currentUser.email;     
+            this.email = this.currentUser.email;
             this.cname = this.currentUser.cname || '';
             this.address = this.currentUser.address || '';
             this.contact = this.currentUser.contact || '';
-           
-          });
-        }
+
+            this.jobRef = db.list('/jobs',
+              ref =>
+              ref.orderByChild('uid').equalTo(this.currentUserKey)
+          );
+            this.jobs = this.jobRef.snapshotChanges().map(changes => {
+              return changes.map(c => {
+                  return { key: c.payload.key, ...c.payload.val() }
+              })
+            });
+            /* this.jobs = this.jobRef.snapshotChanges().map(changes => {
+              return changes.map(c => {
+                if (c.payload.val().uid == this.currentUserKey) {
+                  return { key: c.payload.key, ...c.payload.val() }
+                }
+              })
+            }); */
+            console.log(this.jobs );
+          })
+      }
       });
+
+
+      
+      /*this.af.authState.subscribe(
+        (auth) => {
+          if (auth != null) {
+            this.jobs.subscribe(job => {
+              this.currentjob = job.find((job) => job.key);
+              this.jt = this.currentjob.jt;
+              this.jd = this.currentjob.jd;
+            });
+          }
+        });*/
+              
+
    }
   
   ngOnInit() {
@@ -75,7 +111,6 @@ export class CompanyComponent {
   editProfile(currentUser) {
     this.editMode = true;
     this.editPro = { key: this.currentUser.key, username: this.currentUser.username, email: this.currentUser.email, cname: this.currentUser.cname, address: this.currentUser.address, contact: this.currentUser.contact, accountType: this.currentUser.accountType };
-   console.log (this.editPro); 
   }
 
 
@@ -92,13 +127,42 @@ export class CompanyComponent {
 
   }
 
-  addJob(currentUser) {
+  addJob(currentjob) {
  const added= this.addjob;
+ this.usersRef = this.db.list('/users');
+ this.jobRef = this.db.list('/jobs');
+ 
+ let obj = {
+   'uid':this.currentUser.key,
+   'cname':this.currentUser.cname,
+   'email': this.currentUser.email,
+   'jt':added.jt,
+   'jd':added.jd,
+
+  
+ }
+//  this.jobRef.set(obj);
+ this.jobRef.push(obj).then(
+  this.addjob.jd = null,
+  this.addjob.jt = null
+ )
  
 
   }
 
+  
+    
+
+  
+
   cancelJob() {
+    this.addjob.jd = null,
+    this.addjob.jt = null
+  }
+
+  deletejob(key: string) {
+    console.log(key);
+ this.jobRef.remove(key);
 
   }
 }

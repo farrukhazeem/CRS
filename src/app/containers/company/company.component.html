@@ -17,6 +17,7 @@
     <mat-card *ngIf="editMode" class="editfor">
     <form #commentForm="ngForm" novalidate>
             <div class="form-container">
+                 
                 <label for="name">Username</label>
                 <input type="text" value={{username}} [(ngModel)]="editPro.username" #username="ngModel" name="username" id="username" class="form-control"
                 />
@@ -68,13 +69,17 @@
 <mat-card class="stdcmp" *ngIf="!editMode">
     <mat-tab-group>
         <mat-tab label="Company Profile">
-            
-           <strong> Username:</strong> {{username}} <br>
+                <div class="job-container">
+            <div class="cp-columns">
+              
+           <strong> Username:</strong>{{username}} <br>
            <strong> Company Name:</strong> {{cname}} <br>
            <strong> Email:</strong> {{email}}<br>
            <strong> Address:</strong> {{address}} <br>
            <strong> Contact:</strong> {{contact}} 
-          
+        </div>
+           
+                </div>
             
                     </mat-tab>
         <mat-tab label="Add Jobs">
@@ -106,7 +111,20 @@
 
 
         </mat-tab>
-        <mat-tab label="View Jobs">View Jobs</mat-tab>
+        <mat-tab label="View My Jobs">
+            <div class="job-container">
+         <div class="joblist-container" id="list" *ngFor="let job of jobs | async">
+                <div class="row-colums">
+                        <button class="button btn-danger job-btn" (click)="deletejob(job.key)">Delete</button>
+                        <button class="button job-btn" (click)="editjob(job)">Edit</button>
+                        <h5>{{job.jt }}</h5>
+                        <p>{{job.jd}} </p>
+                </div>
+            </div>
+            </div>
+
+
+        </mat-tab>
         <mat-tab label="View Student Details">View Student Details</mat-tab>
     </mat-tab-group>
 

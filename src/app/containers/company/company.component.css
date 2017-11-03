@@ -16,6 +16,50 @@
     width: 100%;
 }
 
+
+h5 {
+    color: hsl(323, 57%, 64%);
+}
+p {
+    color:blueviolet;
+}
+
+.row-colums {
+    
+        background-color: #E3ECF3;
+        
+    }
+
+    .cp-columns {
+        background-color: #E3ECF3;
+        padding:10px;
+    }
+
+    .col {
+        
+            color:gray;
+        }
+
+
+        .job-container {
+            display:block;
+            width:100%;
+            padding:0.5em;
+            margin-bottom: 5px;
+            margin: 0.5em auto;
+            background:#ffffff;
+           
+           
+        }
+        .job-btn{
+            float: right;
+            margin-left: 5px;
+            margin-top: 10px;
+            margin-right: 5px;
+            width: 75px;
+        }
+
+        
 .editfor {
     position: relative;
     width: calc(100% - 325px);
