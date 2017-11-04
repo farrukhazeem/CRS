@@ -25,7 +25,6 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AdminComponent } from './containers/admin/admin.component';
 import { CompanyComponent } from './containers/company/company.component';
 import { StudentComponent } from './containers/student/student.component';
-import { ThanksComponent } from'./thanks/thanks.component';
 
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -62,9 +61,8 @@ export const firebaseConfig = {
     SignupComponent,
     AdminComponent,
     CompanyComponent,
-    StudentComponent,
-    ThanksComponent
-    
+    StudentComponent
+        
   ],
   imports: [
     BrowserModule,
@@ -119,15 +117,9 @@ export const firebaseConfig = {
       {
         path: 'student',
         component: StudentComponent
-      },
-      {
-        path: 'thanks',
-        component: ThanksComponent
       }
-       
-    
+          
      
-
     ]),
     AngularFireModule.initializeApp(firebaseConfig)
     

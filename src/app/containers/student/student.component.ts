@@ -21,10 +21,15 @@ export class StudentComponent  {
   experience:'';
   email:'';
   username:'';
+  jt:'';
+  jd:'';
 
+  jobRef: AngularFireList<any>;
+  jobs: Observable<any[]>;
   usersRef: AngularFireList<any>;
   myGroup2: FormGroup;
   users: Observable<any[]>;
+
   currentUserKey;
   currentUser;
 
@@ -69,6 +74,11 @@ export class StudentComponent  {
 
   }
 
+  applyjob() {
+
+
+  }
+  
   editProfile(currentUser) {
     this.editMode = true;
     this.editPro = { key: this.currentUser.key, username: this.currentUser.username, email: this.currentUser.email, fullname: this.currentUser.fullname, cgpa: this.currentUser.cgpa, skills: this.currentUser.skills, experience: this.currentUser.experience, accountType: this.currentUser.accountType };

@@ -71,7 +71,7 @@ export class AuthService {
       .then((user) => {
         
         this.authState = user;
-        // this.updateUserData();
+        //this.updateUserData();
         return user;
       
       })
@@ -106,7 +106,6 @@ export class AuthService {
       email: this.authState.email,
       uid: this.authState.uid,
       username: this.authState.username,
-      cname: this.authState.cname,
       accountType: this.authState.accountType
     }
 
