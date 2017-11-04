@@ -27,9 +27,11 @@ export class CompanyComponent {
 
 
   usersRef: AngularFireList<any>;
+  studentsRef: AngularFireList<any>;
   jobRef: AngularFireList<any>;
   myGroup3: FormGroup;
   users: Observable<any[]>;
+  students: Observable<any[]>;
   jobs: Observable<any[]>;
   currentUserKey;
   currentUser;
@@ -68,10 +70,18 @@ export class CompanyComponent {
             this.contact = this.currentUser.contact || '';
 
             this.jobRef = db.list('/jobs',
-              ref =>
-              ref.orderByChild('uid').equalTo(this.currentUserKey)
-          );
+              ref => ref.orderByChild('uid').equalTo(this.currentUserKey)
+            );
             this.jobs = this.jobRef.snapshotChanges().map(changes => {
+              return changes.map(c => {
+                  return { key: c.payload.key, ...c.payload.val() }
+              })
+            });
+
+            this.studentsRef = db.list('/users',
+              ref => ref.orderByChild('accountType').equalTo("student")
+            );
+            this.students = this.studentsRef.snapshotChanges().map(changes => {
               return changes.map(c => {
                   return { key: c.payload.key, ...c.payload.val() }
               })

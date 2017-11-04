@@ -85,13 +85,11 @@
                 <mat-tab label="View Jobs">
                   <div class="job-container">
                     <div class="joblist-container" id="list" *ngFor="let job of jobs | async">
-                           <div class="row-colums">
-                              <button type="button" class="button btn-danger job-btn" (click)="cancelapply()">Cancel</button>
-                              
+                          <div class="row-colums">
                             <button class="button btn-danger job-btn" (click)="applyjob(job.key)">Apply</button>
-                                   <h5>{{job.jt }}</h5>
-                                   <p>{{job.jd}} </p>
-                                  </div>
+                            <h5>{{job.jt }}</h5>
+                            <p>{{job.jd}} </p>
+                          </div>
                     </div>
                   </div>
 
