@@ -48,7 +48,7 @@ export class StudentComponent  {
       'experience':[null, Validators.compose([Validators.required])]
     });
     this.usersRef = db.list('users');
-
+  
     this.users = this.usersRef.snapshotChanges().map(changes => {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
     });
@@ -67,8 +67,15 @@ export class StudentComponent  {
           });
         }
       });
-
+      this.jobRef = db.list('/jobs');
+      this.jobs = this.jobRef.snapshotChanges().map(changes => {
+        return changes.map(c => {
+            return { key: c.payload.key, ...c.payload.val() }
+        })
+      });
+      
    }
+  
 
   ngOnInit() {
 
@@ -78,7 +85,7 @@ export class StudentComponent  {
 
 
   }
-  
+
   editProfile(currentUser) {
     this.editMode = true;
     this.editPro = { key: this.currentUser.key, username: this.currentUser.username, email: this.currentUser.email, fullname: this.currentUser.fullname, cgpa: this.currentUser.cgpa, skills: this.currentUser.skills, experience: this.currentUser.experience, accountType: this.currentUser.accountType };

@@ -17,6 +17,32 @@
     width: 100%;
 }
 
+
+h5 {
+    color: hsl(323, 57%, 64%);
+}
+p {
+    color:blueviolet;
+}
+
+.row-colums {
+    
+        background-color: #E3ECF3;
+        
+    
+    }
+    .sp-columns {
+        background-color: #E3ECF3;
+        padding:10px;
+
+    }
+    .job-btn{
+        float: right;
+        margin-left: 5px;
+        margin-top: 10px;
+        margin-right: 5px;
+        width: 75px;
+    }
 .views{
 margin-top: 10px;
 text-align: left;

@@ -73,18 +73,22 @@
  <mat-card class="stdcmp" *ngIf="!editMode">
         <mat-tab-group>
                 <mat-tab label="Student Profile">
+                    <div class="sp-columns">
                     <strong> Username:</strong> {{username}} <br>
                     <strong> Full Name:</strong> {{fullname}} <br>
                     <strong> Email:</strong> {{email}}<br>
                     <strong> CGPA:</strong> {{cgpa}} <br>
                     <strong> Skills:</strong> {{skills}} <br>
                     <strong> Experience:</strong> {{experience}} 
+                    </div>
                 </mat-tab>
                 <mat-tab label="View Jobs">
                   <div class="job-container">
                     <div class="joblist-container" id="list" *ngFor="let job of jobs | async">
                            <div class="row-colums">
-                                   <button class="button btn-danger job-btn" (click)="applyjob(job.key)">Apply</button>
+                              <button type="button" class="button btn-danger job-btn" (click)="cancelapply()">Cancel</button>
+                              
+                            <button class="button btn-danger job-btn" (click)="applyjob(job.key)">Apply</button>
                                    <h5>{{job.jt }}</h5>
                                    <p>{{job.jd}} </p>
                                   </div>
