@@ -1,8 +1,14 @@
 import { NavbarComponent } from './../../navbar/navbar.component';
 import { AuthService } from './../../core/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { Observable} from 'rxjs';
+
 import { Router } from '@angular/router';
+import {MatTabsModule} from '@angular/material';
+import {MatButtonModule} from '@angular/material';
+import { Observable} from 'rxjs';
+
+import { FormControl,FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 import { AngularFireDatabaseModule, AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
@@ -12,13 +18,54 @@ import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
+
+
+
+
 export class AdminComponent implements OnInit {
 
-  SignOuthideMode = true;
+
+  usersRef: AngularFireList<any>;
+  studentsRef: AngularFireList<any>;
+  jobRef: AngularFireList<any>;
+  myGroup3: FormGroup;
+  users: Observable<any[]>;
+  students: Observable<any[]>;
+  jobs: Observable<any[]>;
+
   
-  constructor(private nav: NavbarComponent, private router: Router, private db: AngularFireDatabase, public authService: AuthService) { }
+  constructor(private sb3: FormBuilder, private router: Router,private af: AngularFireAuth, private db: AngularFireDatabase, public authService: AuthService) { 
+  
+    this.myGroup3 = sb3.group({
+      'username': [null, Validators.compose([Validators.required])],
+      'cname': [null, Validators.compose([Validators.required])],
+      'email': [null, Validators.compose([Validators.required])],
+      'address': [null, Validators.compose([Validators.required])],
+      'contact':[null, Validators.compose([Validators.required])],
+      'jt': [null, Validators.compose([Validators.required])],
+      'jd':[null, Validators.compose([Validators.required])]
+    });
+    this.usersRef = db.list('users');
+  
+    this.users = this.usersRef.snapshotChanges().map(changes => {
+      return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+    });
+
+    this.studentsRef = db.list('/users',
+    ref => ref.orderByChild('accountType').equalTo("student")
+  );
+  this.students = this.studentsRef.snapshotChanges().map(changes => {
+    return changes.map(c => {
+        return { key: c.payload.key, ...c.payload.val() }
+    })
+  });
+  
+  }
+
+  
 
   ngOnInit() {
   }
+  
 
 }

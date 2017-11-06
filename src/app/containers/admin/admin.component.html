@@ -1,4 +1,4 @@
-<div class="nav1" *ngIf="SignOuthideMode">
+<div class="nav1">
 <mat-card class="adminPanel">
  <div class="admin-wrapper">
     <strong >Admin Panel</strong> 
@@ -7,13 +7,38 @@
     <img src="../../../assets/Images/user-image.jpg" >
 </div>
 <div class="views">
-    <a mat-button routerLink=".">View All Students</a>
-    <a mat-button routerLink=".">View All Companies</a>
-    <a mat-button routerLink=".">View All Jobs</a>
+   
 </div>
 
 </mat-card>
 
-<mat-card class="stdcmp"> Admin Contents</mat-card>
+<mat-card class="stdcmp">
+        <mat-tab-group>
+                
+                <mat-tab label="View All Students">
+                        <div class="view-container">
+                                    <div class="view-colums">
+                                        <div class= "viewname"> 
+                                      
+                                       </div> 
+                                       
+                                     
+                                      </div>
+                                    </div>
+                        
+                          
+                  
+
+
+                </mat-tab>
+                <mat-tab label="View All Companies">View All Companies</mat-tab>
+                <mat-tab label="View All Jobs">View All Jobs</mat-tab>
+              </mat-tab-group>
+
+
+
+
+
+</mat-card>
 
 </div>
