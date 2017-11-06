@@ -86,7 +86,7 @@
                   <div class="job-container">
                     <div class="joblist-container" id="list" *ngFor="let job of jobs | async">
                           <div class="row-colums">
-                            <button class="button btn-danger job-btn" (click)="applyjob(job.key)">Apply</button>
+                            <button class ="view-btn2" mat-raised-button color="primary" (click)="applyjob(job.key)">Apply</button>
                             <h5>{{job.jt }}</h5>
                             <p>{{job.jd}} </p>
                           </div>

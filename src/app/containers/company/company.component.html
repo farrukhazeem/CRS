@@ -98,9 +98,10 @@
                     <div *ngIf="jd.errors && (jd.dirty || jd.touched)" class="alert alert-danger">
                         <div [hidden]="!jd.errors.required">Job Description is Required!</div>
                     </div>
-
-                    <button type="submit" [disabled]="!commentForm.form.valid" class="button" (click)="addJob()">Add job</button>
-                    <button type="button" class="button" (click)="cancelJob()">Cancel</button>
+                
+                    <button type="submit" [disabled]="!commentForm.form.valid" class ="view-btn1" mat-raised-button color="primary" (click)="addJob()">Add job</button>
+                    <button class ="view-btn1" mat-raised-button color="warn"  (click)="cancelJob()">Cancel</button>
+                    
                 </div>
             </form>
         </mat-tab>
@@ -108,8 +109,8 @@
             <div class="job-container">
                 <div class="joblist-container" id="list" *ngFor="let job of jobs | async">
                     <div class="row-colums">
-                        <button class="button btn-danger job-btn" (click)="deletejob(job.key)">Delete</button>
-                        <button class="button job-btn" (click)="editjob(job)">Edit</button>
+                        <button class ="view-btn" mat-raised-button color="warn" (click)="deletejob(job.key)">Delete</button>
+                        <button class ="view-btn" mat-raised-button color="primary"(click)="Edit()">Edit</button>
                         <h5>{{job.jt }}</h5>
                         <p>{{job.jd}} </p>
                     </div>
@@ -119,16 +120,21 @@
 
         </mat-tab>
         <mat-tab label="View Student Details">
-            <div class="job-container">
-                <div class="joblist-container" id="list" *ngFor="let student of students | async">
-                    <div class="row-colums">
-                        <h5>{{student.username }}</h5>
-                        <p> Student name: {{student.username}} </p>
+            <div class="view-container">
+                <div class="viewlist-container" id="list" *ngFor="let student of students | async">
+                    <div class="view-colums">
+                        <div class= "viewname"> {{student.username }} </div>
+                        <button class ="view-btn2" mat-raised-button color="warn" (click)="removeDetail()">Delete</button>
+                        <button class ="view-btn2" mat-raised-button color="primary"(click)="viewDetail()">View Details</button>
+                       
+                        
+                        <!-- <p> Student name: {{student.username}} </p>
                         <p> Full Name: {{student.fullname}} </p>
                         <p> Email: {{student.email}}</p>
                         <p> CGPA:{{student.cgpa}} </p>
                         <p> Skills: {{student.skills}} </p>
-                        <p> Experience:{{student.experience}} </p>
+                        <p> Experience:{{student.experience}} </p> -->
+                      
                     </div>
                 </div>
             </div>

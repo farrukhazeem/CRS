@@ -40,7 +40,33 @@ p {
             color:gray;
         }
 
+.view-btn {
+    float: right;
+    margin: 4px; 
+    margin-top: 11px;
+}
 
+.view-btn1 {
+    float: left;
+    margin: 4px; 
+}
+.view-btn2 {
+    float: right;
+    margin: 4px; 
+    margin-top: 3px;
+}
+
+
+.viewname {
+    display: inline-block;
+    color:blueviolet;
+}
+.view-colums{
+    background-color: #E3ECF3;
+  padding: 10px;
+  height: 62px;
+  margin-top: 7px;
+}
         .job-container {
             display:block;
             width:100%;

@@ -50,6 +50,15 @@ text-align: left;
 
 }
 
+.view-btn2 {
+    float: right;
+    margin: 4px; 
+   
+    margin-top: 11px;
+    margin-right: 12px;
+}
+
+
 .editfor {
     position: relative;
     width: calc(100% - 325px);

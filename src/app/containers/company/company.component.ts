@@ -6,6 +6,7 @@ import { AuthService } from './../../core/auth.service';
 import { FormControl,FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import {MatTabsModule} from '@angular/material';
+import {MatButtonModule} from '@angular/material';
 
 import { AngularFireDatabaseModule, AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
