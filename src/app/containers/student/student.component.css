@@ -83,3 +83,13 @@ height:35px;
     display: inline-block;
     vertical-align: top;
 }
+
+.Applyfor {
+    position: relative;
+    width: calc(100% - 325px);
+    height: 715px;
+    margin: 20px;
+    display: inline-block;
+    vertical-align: top;
+
+}

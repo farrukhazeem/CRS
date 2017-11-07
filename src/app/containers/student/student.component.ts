@@ -24,21 +24,28 @@ export class StudentComponent  {
   username:'';
   jt:'';
   jd:'';
+  cname:'';
 
   jobRef: AngularFireList<any>;
   jobs: Observable<any[]>;
   usersRef: AngularFireList<any>;
   myGroup2: FormGroup;
   users: Observable<any[]>;
+ applicationsRef: AngularFireList<any>;
+ applications:  Observable<any[]>;  
+
+
 
   currentUserKey;
   currentUser;
+  currentJob;
+  currentJobApplied;
 
 
-
+  applyFor = {key:'',cname:'',fullname:'',email:'',cgpa:'',skills:'',experience:'',jt:'', jd:'' };
   editPro = {key:'',username:'', fullname:'',email:'', cgpa:'',skills:'',experience:'', accountType:''}
   editMode = false;
-
+  applymode = false;
   constructor(private sb2: FormBuilder,private router: Router, private db: AngularFireDatabase, public authService: AuthService,  private af: AngularFireAuth,) {
     this.myGroup2 = sb2.group({
       'username': [null, Validators.compose([Validators.required])],
@@ -46,7 +53,8 @@ export class StudentComponent  {
       'fullname': [null, Validators.compose([Validators.required])],
       'cgpa': [null, Validators.compose([Validators.required])],
       'skills': [null, Validators.compose([Validators.required])],
-      'experience':[null, Validators.compose([Validators.required])]
+      'experience':[null, Validators.compose([Validators.required])],
+      'cname': [null, Validators.compose([Validators.required])]
     });
     this.usersRef = db.list('users');
   
@@ -74,6 +82,25 @@ export class StudentComponent  {
             return { key: c.payload.key, ...c.payload.val() }
         })
       });
+
+      this.af.authState.subscribe(
+        (auth) => {
+          if (auth != null) {
+            this.jobs.subscribe(jobs => {
+              this.currentJob = jobs.find((job) => job.key);
+            
+             
+              
+            });
+          }
+        });
+
+        this.applicationsRef = db.list('/applications');
+        this.applications = this.applicationsRef.snapshotChanges().map(changes => {
+          return changes.map(c => {
+              return { key: c.payload.key, ...c.payload.val() }
+          })
+        });
       
    }
   
@@ -82,10 +109,6 @@ export class StudentComponent  {
 
   }
 
-  applyjob() {
-
-
-  }
 
   editProfile(currentUser) {
     this.editMode = true;
@@ -97,7 +120,34 @@ export class StudentComponent  {
 
     this.editMode = false;
   }
+
+  cancelApply() {
+    this.applymode = false;
+  }
   
+  Applied(currentjob) {
+    const applied = this.applyFor; 
+    this.usersRef = this.db.list('/users');
+    this.jobRef = this.db.list('/jobs');
+    this.applicationsRef = this.db.list('/applications');
+   
+    
+ let obj = {
+
+  cname: this.currentJob.cname, fullname: this.currentUser.fullname,
+   email: this.currentUser.email, cgpa: this.currentUser.cgpa,
+    skills: this.currentUser.skills, experience: this.currentUser.experience,
+     jt: this.currentJob.jt, jd: this.currentJob.jd };
+
+     this.applicationsRef.push(obj).then (
+  
+
+     )
+      
+    
+
+
+  }
   updateEdited() {
     const editedPro = this.editPro;
     this.usersRef = this.db.list('users');
@@ -105,9 +155,14 @@ export class StudentComponent  {
     this.editMode = false;
 
   }
-  
-  
-  
+
+
+  applyjob() {
+    this.applymode = true;
+    console.log( this.currentJob);
+    this.applyFor = { key: this.currentJob.key, cname: this.currentJob.cname, fullname: this.currentUser.fullname, email: this.currentUser.email, cgpa: this.currentUser.cgpa, skills: this.currentUser.skills, experience: this.currentUser.experience, jt: this.currentJob.jt, jd: this.currentJob.jd };
+
+  }
 
 
 }

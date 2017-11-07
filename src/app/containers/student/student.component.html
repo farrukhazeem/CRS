@@ -70,7 +70,7 @@
             </div>
           </form>
 </mat-card>
- <mat-card class="stdcmp" *ngIf="!editMode">
+ <mat-card class="stdcmp" *ngIf="!editMode && !applymode">
         <mat-tab-group>
                 <mat-tab label="Student Profile">
                     <div class="sp-columns">
@@ -86,15 +86,84 @@
                   <div class="job-container">
                     <div class="joblist-container" id="list" *ngFor="let job of jobs | async">
                           <div class="row-colums">
-                            <button class ="view-btn2" mat-raised-button color="primary" (click)="applyjob(job.key)">Apply</button>
+                            <button class ="view-btn2" mat-raised-button color="primary" (click)="applyjob()">Apply</button>
                             <h5>Job Title: {{job.jt }}</h5>
                             <p>Company Name: {{job.cname}}</p>
-                       
+                      
                           </div>
                     </div>
                   </div>
 
                 </mat-tab>
               </mat-tab-group>
-      
  </mat-card>
+
+<mat-card class="Applyfor" *ngIf="applymode">
+  <form #commentForm="ngForm" novalidate>
+    <div class="form-container">
+        <label for="name"> Job Title </label>
+        <input id="jt" type="text" [(ngModel)]="applyFor.jt" #jt="ngModel" name="jt" class="form-control"
+        />
+  
+        <div *ngIf="jt.errors && (jt.dirty || jt.touched)" class="alert alert-danger">
+          <div [hidden]="!jt.errors.required">Job Title is Required!</div>
+        </div>
+  
+        <label for="name"> Job Description </label>
+        <input id="jd" type="text" [(ngModel)]="applyFor.jd" #jd="ngModel" name="jd" class="form-control" />
+  
+        <div *ngIf="jd.errors && (jd.dirty || jd.touched)" class="alert alert-danger">
+          <div [hidden]="!jd.errors.required">Job Description Required!</div>
+        </div>
+      <label for="name">Comapny</label>
+      <input type="text" value={{cname}} [(ngModel)]="applyFor.cname" #cname="ngModel" name="cname" id="cname" class="form-control"
+      />
+      <div *ngIf="cname.errors && (cname.dirty || cname.touched)" class="alert alert-danger">
+        <div [hidden]="!cname.errors.required">Comapny Name is Required!</div>
+      </div>
+
+      <label for="name"> Student Full Name</label>
+      <input id="fullname" value={{fullname}} type="text" [(ngModel)]="applyFor.fullname" #fullname="ngModel" name="fullname" class="form-control"
+      />
+
+      <div *ngIf="fullname.errors && (fullname.dirty || fullname.touched)" class="alert alert-danger">
+        <div [hidden]="!fullname.errors.required">Full Name is Required!</div>
+      </div>
+
+      <label for="name"> Email</label>
+      <input id="email" type="text" value={{email}} [(ngModel)]="applyFor.email" #email="ngModel" name="email" class="form-control"
+      />
+
+      <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
+        <div [hidden]="!email.errors.required">Email is Required!</div>
+      </div>
+
+      <label for="name"> CGPA </label>
+      <input id="cgpa" type="text" [(ngModel)]="applyFor.cgpa" #cgpa="ngModel" name="cgpa" class="form-control" />
+
+      <div *ngIf="cgpa.errors && (skills.dirty || cgpa.touched)" class="alert alert-danger">
+        <div [hidden]="!cgpa.errors.required">CGPA is Required!</div>
+      </div>
+
+      <label for="name"> Skills </label>
+      <input id="skills" type="text" [(ngModel)]="applyFor.skills" #skills="ngModel" name="skills" class="form-control" />
+
+      <div *ngIf="skills.errors && (skills.dirty || skills.touched)" class="alert alert-danger">
+        <div [hidden]="!address.errors.required">Skills are Required!</div>
+      </div>
+
+      <label for="name"> Experience </label>
+      <input id="experience" type="text" [(ngModel)]="applyFor.experience" #experience="ngModel" name="experience" class="form-control"
+      />
+
+      <div *ngIf="experience.errors && (experience.dirty || experience.touched)" class="alert alert-danger">
+        <div [hidden]="!experience.errors.required">Experience is Required!</div>
+      </div>
+
+     
+
+      <button type="submit" [disabled]="!commentForm.form.valid" class="view-btn" mat-raised-button color="primary" (click)="Applied()">Apply</button>
+      <button type="button" class="view-btn" mat-raised-button color="primary"  (click)="cancelApply()">Cancel</button>
+    </div>
+  </form>
+</mat-card>
