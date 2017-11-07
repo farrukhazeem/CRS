@@ -1,7 +1,7 @@
 <div class="nav1">
 <mat-card class="adminPanel">
  <div class="admin-wrapper">
-    <strong >Admin Panel</strong> 
+    <div class="adpanel" >Admin Panel</div> 
  </div>  
 <div class="adminimage">
     <img src="../../../assets/Images/user-image.jpg" >
@@ -17,12 +17,16 @@
                 
                 <mat-tab label="View All Students">
                         <div class="view-container">
+                                <div class="viewlist-container" id="list" *ngFor="let student of students | async">
                                     <div class="view-colums">
                                         <div class= "viewname"> 
-                                      
+                                            <strong>Username: </strong> {{student.username }} <br>    
+                                            <strong>Name: </strong> {{student.fullname }} 
                                        </div> 
+                                       <button class ="view-btn2" mat-raised-button color="warn" (click)="removeDetail()">Delete</button>
+                                       <button class ="view-btn2" mat-raised-button color="primary"(click)="viewDetail()">View Details</button>
                                        
-                                     
+                                    </div>
                                       </div>
                                     </div>
                         
@@ -31,8 +35,39 @@
 
 
                 </mat-tab>
-                <mat-tab label="View All Companies">View All Companies</mat-tab>
-                <mat-tab label="View All Jobs">View All Jobs</mat-tab>
+                <mat-tab label="View All Companies">
+
+                        <div class="view-container">
+                                <div class="viewlist-container" id="list" *ngFor="let company of companys | async">
+                                    <div class="view-colums">
+                                        <div class= "viewname"> 
+                                                <strong>Comapny Name: </strong> {{company.username }} 
+                                       </div> 
+                                       <button class ="view-btn2" mat-raised-button color="warn" (click)="removeDetail()">Delete</button>
+                                       <button class ="view-btn2" mat-raised-button color="primary"(click)="viewDetail()">View Details</button>
+                                       
+                                    </div>
+                                      </div>
+                                    </div>
+
+
+                </mat-tab>
+                <mat-tab label="View All Jobs">
+                        <div class="viewlist-container" id="list" *ngFor="let job of jobs | async">
+                               
+                                <div class="view-colums">
+                                    <div class= "viewname"> 
+                                        <strong>Job Title:</strong> {{job.jt }}
+                                            <p> <strong>Comapny Name: </strong> {{job.cname }}  </p>
+                                   </div> 
+                                   <button class ="view-btn2" mat-raised-button color="warn" (click)="removeDetail()">Delete</button>
+                                   <button class ="view-btn2" mat-raised-button color="primary"(click)="viewDetail()">View Details</button>
+                                   
+                                </div>
+                                  </div>
+                            
+
+                </mat-tab>
               </mat-tab-group>
 
 

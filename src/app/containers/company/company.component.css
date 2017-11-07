@@ -43,7 +43,7 @@ p {
 .view-btn {
     float: right;
     margin: 4px; 
-    margin-top: 11px;
+    margin-top: 6px;
 }
 
 .view-btn1 {
@@ -53,7 +53,7 @@ p {
 .view-btn2 {
     float: right;
     margin: 4px; 
-    margin-top: 3px;
+    margin-top: -20px;
 }
 
 
@@ -116,3 +116,4 @@ height:35px;
     display: inline-block;
     vertical-align: top;
 }
+

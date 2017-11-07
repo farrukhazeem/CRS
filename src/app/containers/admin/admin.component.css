@@ -41,3 +41,27 @@ height:35px;
     display: inline-block;
     vertical-align: top;
 }
+.view-colums {
+    
+        background-color: #E3ECF3;
+        padding: 10px;
+        height: 65px;
+        margin-top: 7px;
+        
+    }
+    .viewname {
+        display: inline-block;
+        color:blueviolet;
+    }
+    .view-btn2 {
+        float: right;
+        margin: 4px; 
+        margin-top: 3px;
+    }
+    strong {
+    color: black;
+    }
+    .adpanel {
+        font-size: 1rem  !important;
+        color:white;
+    }

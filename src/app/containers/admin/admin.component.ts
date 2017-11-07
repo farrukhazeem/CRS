@@ -33,7 +33,12 @@ export class AdminComponent implements OnInit {
   students: Observable<any[]>;
   jobs: Observable<any[]>;
 
-  
+  companysRef: AngularFireList<any>;
+  companys:Observable<any[]>;
+
+  currentUserKey;
+  currentUser;
+
   constructor(private sb3: FormBuilder, private router: Router,private af: AngularFireAuth, private db: AngularFireDatabase, public authService: AuthService) { 
   
     this.myGroup3 = sb3.group({
@@ -51,6 +56,8 @@ export class AdminComponent implements OnInit {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
     });
 
+
+
     this.studentsRef = db.list('/users',
     ref => ref.orderByChild('accountType').equalTo("student")
   );
@@ -60,6 +67,28 @@ export class AdminComponent implements OnInit {
     })
   });
   
+
+  this.companysRef = db.list('/users',
+  ref => ref.orderByChild('accountType').equalTo("company") 
+  
+);
+this.companys = this.companysRef.snapshotChanges().map(changes => {
+  return changes.map(c => {
+      return { key: c.payload.key, ...c.payload.val() }
+  })
+});
+
+this.jobRef = db.list('/jobs');
+
+this.jobs = this.jobRef.snapshotChanges().map(changes => {
+return changes.map(c => {
+    return { key: c.payload.key, ...c.payload.val() }
+})
+});
+
+
+
+
   }
 
   

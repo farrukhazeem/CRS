@@ -111,7 +111,7 @@
                     <div class="row-colums">
                         <button class ="view-btn" mat-raised-button color="warn" (click)="deletejob(job.key)">Delete</button>
                         <button class ="view-btn" mat-raised-button color="primary"(click)="Edit()">Edit</button>
-                        <h5>{{job.jt }}</h5>
+                        <strong>Job Title:</strong> {{job.jt }}
                         <p>{{job.jd}} </p>
                     </div>
                 </div>
@@ -123,10 +123,12 @@
             <div class="view-container">
                 <div class="viewlist-container" id="list" *ngFor="let student of students | async">
                     <div class="view-colums">
-                        <div class= "viewname"> {{student.username }} </div>
+                            <strong>Username: </strong> {{student.username }} <br>    
+                            <strong>Name: </strong> {{student.fullname }} 
+                         
                         <button class ="view-btn2" mat-raised-button color="warn" (click)="removeDetail()">Delete</button>
                         <button class ="view-btn2" mat-raised-button color="primary"(click)="viewDetail()">View Details</button>
-                       
+                    </div>
                         
                         <!-- <p> Student name: {{student.username}} </p>
                         <p> Full Name: {{student.fullname}} </p>
@@ -137,7 +139,7 @@
                       
                     </div>
                 </div>
-            </div>
+            
         </mat-tab>
     </mat-tab-group>
 
