@@ -77,6 +77,7 @@ export class StudentComponent  {
         }
       });
       this.jobRef = db.list('/jobs');
+      
       this.jobs = this.jobRef.snapshotChanges().map(changes => {
         return changes.map(c => {
             return { key: c.payload.key, ...c.payload.val() }
@@ -88,7 +89,7 @@ export class StudentComponent  {
           if (auth != null) {
             this.jobs.subscribe(jobs => {
               this.currentJob = jobs.find((job) => job.key);
-            
+              this.cname = this.currentJobApplied.cname;    
              
               
             });
@@ -124,28 +125,24 @@ export class StudentComponent  {
   cancelApply() {
     this.applymode = false;
   }
-  
-  Applied(currentjob) {
-    const applied = this.applyFor; 
+
+  Applied() {
+    this.applyFor;
     this.usersRef = this.db.list('/users');
     this.jobRef = this.db.list('/jobs');
     this.applicationsRef = this.db.list('/applications');
-   
-    
- let obj = {
 
-  cname: this.currentJob.cname, fullname: this.currentUser.fullname,
-   email: this.currentUser.email, cgpa: this.currentUser.cgpa,
-    skills: this.currentUser.skills, experience: this.currentUser.experience,
-     jt: this.currentJob.jt, jd: this.currentJob.jd };
 
-     this.applicationsRef.push(obj).then (
-  
+    let obj = {
 
-     )
-      
-    
-
+      cname: this.applyFor.cname, fullname: this.currentUser.fullname,
+      email: this.currentUser.email, cgpa: this.currentUser.cgpa,
+      skills: this.currentUser.skills, experience: this.currentUser.experience,
+      jt: this.applyFor.jt, jd: this.applyFor.jd
+    };
+    this.applicationsRef.push(obj).then(() => {
+      this.applymode = false;
+    })
 
   }
   updateEdited() {
@@ -157,11 +154,10 @@ export class StudentComponent  {
   }
 
 
-  applyjob() {
+  applyjob(job) {
     this.applymode = true;
-    console.log( this.currentJob);
-    this.applyFor = { key: this.currentJob.key, cname: this.currentJob.cname, fullname: this.currentUser.fullname, email: this.currentUser.email, cgpa: this.currentUser.cgpa, skills: this.currentUser.skills, experience: this.currentUser.experience, jt: this.currentJob.jt, jd: this.currentJob.jd };
-
+    this.applyFor = { key: job.key, cname: job.cname, fullname: this.currentUser.fullname, email: this.currentUser.email, cgpa: this.currentUser.cgpa, skills: this.currentUser.skills, experience: this.currentUser.experience, jt: job.jt, jd: job.jd };
+   
   }
 
 

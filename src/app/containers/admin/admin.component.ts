@@ -96,5 +96,15 @@ return changes.map(c => {
   ngOnInit() {
   }
   
+  removeDetail(key: string) {
+    this.studentsRef.remove(key);
+  }
+
+  removeCompany(key: string) {
+    this.companysRef.remove(key);
+  }
+  removejob(key: string) {
+    this.jobRef.remove(key);
+  }
 
 }

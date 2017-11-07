@@ -63,12 +63,11 @@
 
 
 
-<mat-card class="stdcmp" *ngIf="!editMode">
+<mat-card class="stdcmp" *ngIf="!editMode && !editJob">
     <mat-tab-group>
         <mat-tab label="Company Profile">
             <div class="job-container">
                 <div class="cp-columns">
-
                     <strong> Username:</strong>{{username}} <br>
                     <strong> Company Name:</strong> {{cname}} <br>
                     <strong> Email:</strong> {{email}}<br>
@@ -90,9 +89,6 @@
                     <div *ngIf="jt.errors && (jt.dirty || jt.touched)" class="alert alert-danger">
                         <div [hidden]="!jt.errors.required">Job Title is Required!</div>
                     </div>
-
-
-
                     <label for="name">Job Description</label>
                     <textarea type="text" [(ngModel)]="addjob.jd" #jd="ngModel" name="jd" id="jd" class="form-control"> </textarea>
                     <div *ngIf="jd.errors && (jd.dirty || jd.touched)" class="alert alert-danger">
@@ -110,7 +106,7 @@
                 <div class="joblist-container" id="list" *ngFor="let job of jobs | async">
                     <div class="row-colums">
                         <button class ="view-btn" mat-raised-button color="warn" (click)="deletejob(job.key)">Delete</button>
-                        <button class ="view-btn" mat-raised-button color="primary"(click)="Edit()">Edit</button>
+                        <button class ="view-btn" mat-raised-button color="primary"(click)="Edit(job)">Edit</button>
                         <strong>Job Title:</strong> {{job.jt }}
                         <p>{{job.jd}} </p>
                     </div>
@@ -126,7 +122,7 @@
                             <strong>Username: </strong> {{student.username }} <br>    
                             <strong>Name: </strong> {{student.fullname }} 
                          
-                        <button class ="view-btn2" mat-raised-button color="warn" (click)="removeDetail()">Delete</button>
+                        <button class ="view-btn2" mat-raised-button color="warn" (click)="removestudent(student.key)">Delete</button>
                         <button class ="view-btn2" mat-raised-button color="primary"(click)="viewDetail()">View Details</button>
                     </div>
                         
@@ -142,7 +138,29 @@
             
         </mat-tab>
     </mat-tab-group>
+</mat-card>
+
+<mat-card class="stdcmp" *ngIf="editJob">
+    <h2>Edit Job</h2>
+    <form #commentForm="ngForm" novalidate>
+        <div class="form-container">
+            <label for="name">Job Title</label>
+            <input type="text" [(ngModel)]="editjob.jt" #jt="ngModel" name="jt" id="jt" class="form-control" />
+            <div *ngIf="jt.errors && (jt.dirty || jt.touched)" class="alert alert-danger">
+                <div [hidden]="!jt.errors.required">Job Title is Required!</div>
+            </div>
 
 
 
+            <label for="name">Job Description</label>
+            <textarea type="text" [(ngModel)]="editjob.jd" #jd="ngModel" name="jd" id="jd" class="form-control"> </textarea>
+            <div *ngIf="jd.errors && (jd.dirty || jd.touched)" class="alert alert-danger">
+                <div [hidden]="!jd.errors.required">Job Description is Required!</div>
+            </div>
+
+            <button type="submit" [disabled]="!commentForm.form.valid" class="view-btn1" mat-raised-button color="primary" (click)="editedJob(job)">Edit job</button>
+            <button class="view-btn1" mat-raised-button color="warn" (click)="canceleditJob()">Cancel</button>
+
+        </div>
+    </form>
 </mat-card>

@@ -23,7 +23,7 @@
                                             <strong>Username: </strong> {{student.username }} <br>    
                                             <strong>Name: </strong> {{student.fullname }} 
                                        </div> 
-                                       <button class ="view-btn2" mat-raised-button color="warn" (click)="removeDetail()">Delete</button>
+                                       <button class ="view-btn2" mat-raised-button color="warn" (click)="removeDetail(student.key)">Delete</button>
                                        <button class ="view-btn2" mat-raised-button color="primary"(click)="viewDetail()">View Details</button>
                                        
                                     </div>
@@ -43,8 +43,8 @@
                                         <div class= "viewname"> 
                                                 <strong>Comapny Name: </strong> {{company.username }} 
                                        </div> 
-                                       <button class ="view-btn2" mat-raised-button color="warn" (click)="removeDetail()">Delete</button>
-                                       <button class ="view-btn2" mat-raised-button color="primary"(click)="viewDetail()">View Details</button>
+                                       <button class ="view-btn2" mat-raised-button color="warn" (click)="removeCompany(company.key)">Delete</button>
+                                       <button class ="view-btn2" mat-raised-button color="primary"(click)="viewComDetail()">View Details</button>
                                        
                                     </div>
                                       </div>
@@ -60,7 +60,7 @@
                                         <strong>Job Title:</strong> {{job.jt }}
                                             <p> <strong>Comapny Name: </strong> {{job.cname }}  </p>
                                    </div> 
-                                   <button class ="view-btn2" mat-raised-button color="warn" (click)="removeDetail()">Delete</button>
+                                   <button class ="view-btn2" mat-raised-button color="warn" (click)="removejob(job.key)">Delete</button>
                                    <button class ="view-btn2" mat-raised-button color="primary"(click)="viewDetail()">View Details</button>
                                    
                                 </div>

@@ -38,9 +38,11 @@ export class CompanyComponent {
   currentUser;
   currentjob;
   
-  addjob= {key:'',jt:'', jd:''}
+  addjob= {key:'',jt:'', jd:''};
+  editjob= {key:'',jt:'', jd:''};
   editPro = {key:'',username:'', cname:'',email:'',address:'',contact:'', accountType:''}
   editMode = false;
+  editJob= false;
 
   constructor(private sb3: FormBuilder, private router: Router,private af: AngularFireAuth, private db: AngularFireDatabase, public authService: AuthService) {
 
@@ -149,9 +151,11 @@ export class CompanyComponent {
    'email': this.currentUser.email,
    'jt':added.jt,
    'jd':added.jd,
+  }
 
-  
- }
+
+
+
 //  this.jobRef.set(obj);
  this.jobRef.push(obj).then(
   this.addjob.jd = null,
@@ -161,11 +165,25 @@ export class CompanyComponent {
 
   }
 
-  
+  removestudent(key: string) {
+    this.studentsRef.remove(key);
+  }
+  Edit(job) {
+    this.editJob = true;
+    this.editjob = { key: job.key, jt: job.jt, jd: job.jd };
+  }
     
-
+  canceleditJob(){
+    this.editJob =false;
+  }
   
+  editedJob(job) {
+    const edittjob = this.editjob;
+    this.jobRef = this.db.list('/jobs');
+    this.jobRef.update(edittjob.key,{jt:edittjob.jt,jd:edittjob.jd} );
+    this.editJob = false;
 
+  }
   cancelJob() {
     this.addjob.jd = null,
     this.addjob.jt = null
