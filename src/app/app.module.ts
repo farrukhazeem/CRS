@@ -34,8 +34,9 @@ import {
   MatRadioModule,
   MatCardModule,
   MatToolbarModule,
-  MatTabsModule,
-  MatSidenavModule} from '@angular/material';
+  MatTabsModule
+  
+  } from '@angular/material';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDfgQh8VhYS7NBdARyRC3iMQ3jfPCr3Zo0",
@@ -73,8 +74,9 @@ export const firebaseConfig = {
     MatRadioModule,
     MatTabsModule,
     MatToolbarModule,
-    MatSidenavModule,
+    
     MatCardModule,
+    
     BrowserAnimationsModule,
     ReactiveFormsModule,
     
