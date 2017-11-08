@@ -117,12 +117,13 @@
         </mat-tab>
         <mat-tab label="View Student Details">
             <div class="view-container">
-                <div class="viewlist-container" id="list" *ngFor="let student of students | async">
+                <div class="viewlist-container" id="list" *ngFor="let application of applications | async">
                     <div class="view-colums">
-                            <strong>Username: </strong> {{student.username }} <br>    
-                            <strong>Name: </strong> {{student.fullname }} 
+                          
+                            <strong>Student Name: </strong>  {{application.fullname}} <br>
+                            <strong>Applied For: </strong>  {{application.jt}}
                          
-                        <button class ="view-btn2" mat-raised-button color="warn" (click)="removestudent(student.key)">Delete</button>
+                        <button class ="view-btn2" mat-raised-button color="warn" (click)="removestudent(application.key)">Delete</button>
                         <button class ="view-btn2" mat-raised-button color="primary"(click)="viewDetail()">View Details</button>
                     </div>
                         
