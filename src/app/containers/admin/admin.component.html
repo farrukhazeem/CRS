@@ -1,4 +1,5 @@
-<div class="nav1">
+<!-- <div *ngIf="!viewMode"></div> -->
+
 <mat-card class="adminPanel">
  <div class="admin-wrapper">
     <div class="adpanel" >Admin Panel</div> 
@@ -6,16 +7,17 @@
 <div class="adminimage">
     <img src="../../../assets/Images/user-image.jpg" >
 </div>
+<h4>Admin</h4>
 <div class="views">
    
 </div>
 
 </mat-card>
 
-<mat-card class="stdcmp">
+<mat-card class="stdcmp" *ngIf="!viewMode && !compviewMode && !jobview" >   
         <mat-tab-group>
                 
-                <mat-tab label="View All Students">
+                <mat-tab label="View All Students" >
                         <div class="view-container">
                                 <div class="viewlist-container" id="list" *ngFor="let student of students | async">
                                     <div class="view-colums">
@@ -24,7 +26,7 @@
                                             <strong>Name: </strong> {{student.fullname }} 
                                        </div> 
                                        <button class ="view-btn2" mat-raised-button color="warn" (click)="removeDetail(student.key)">Delete</button>
-                                       <button class ="view-btn2" mat-raised-button color="primary"(click)="viewDetail()">View Details</button>
+                                       <button class ="view-btn2" mat-raised-button color="primary"(click)="viewstdDetail(student)">View Details</button>
     
                                        
                                     </div>
@@ -45,7 +47,7 @@
                                                 <strong>Comapny Name: </strong> {{company.username }} 
                                        </div> 
                                        <button class ="view-btn2" mat-raised-button color="warn" (click)="removeCompany(company.key)">Delete</button>
-                                       <button class ="view-btn2" mat-raised-button color="primary"(click)="viewComDetail()">View Details</button>
+                                       <button class ="view-btn2" mat-raised-button color="primary"(click)="viewComDetail(company)">View Details</button>
                                        
                                     </div>
                                       </div>
@@ -62,7 +64,7 @@
                                             <p> <strong>Comapny Name: </strong> {{job.cname }}  </p>
                                    </div> 
                                    <button class ="view-btn2" mat-raised-button color="warn" (click)="removejob(job.key)">Delete</button>
-                                   <button class ="view-btn2" mat-raised-button color="primary"(click)="viewDetail()">View Details</button>
+                                   <button class ="view-btn2" mat-raised-button color="primary"(click)="viewjobDetail(job)">View Details</button>
                                    
                                 </div>
                                   </div>
@@ -71,10 +73,48 @@
                 </mat-tab>
               </mat-tab-group>
 
-
-
-
-
 </mat-card>
 
-</div>
+<mat-card class="stdcmp"  *ngIf="viewMode">
+    <h2>{{this.viewstd.fullname }} </h2>
+    <mat-list>
+        <mat-list-item> <strong>Email: </strong> {{this.viewstd.email }}  
+             </mat-list-item>
+        <mat-list-item><strong>CGPA: </strong> {{this.viewstd.cgpa }}</mat-list-item>
+        <mat-list-item> <strong>Experience: </strong> {{this.viewstd.experience }}    
+        </mat-list-item>
+   <mat-list-item><strong>Skills: </strong> {{this.viewstd.skills }}</mat-list-item>
+ 
+      </mat-list>
+      <button class ="view-btn2" mat-raised-button color="primary"(click)="ok()">OK</button>
+    </mat-card>
+
+    <mat-card class="stdcmp"  *ngIf="compviewMode">
+            <h2>{{this.viewcomp.cname }} </h2>
+            <mat-list>
+                <mat-list-item><strong>Username: </strong> {{this.viewcomp.username }}</mat-list-item>
+                <mat-list-item> <strong>Email: </strong> {{this.viewcomp.email }}  
+                     </mat-list-item>
+                
+                <mat-list-item> <strong>Address: </strong> {{this.viewcomp.address }}    
+                </mat-list-item>
+           <mat-list-item><strong>Contact: </strong> {{this.viewcomp.contact }}</mat-list-item>
+         
+              </mat-list>
+              <button class ="view-btn2" mat-raised-button color="primary"(click)="okcmp()">OK</button>
+            </mat-card>
+
+
+            <mat-card class="stdcmp"  *ngIf="jobview">
+                    <h2>{{this.viewjob.jt }} </h2>
+                    <mat-list>
+                        <mat-list-item><strong>Comapny Name: </strong> {{this.viewjob.cname }}</mat-list-item>
+                        <mat-list-item> <strong>Email: </strong> {{this.viewjob.email }}  
+                             </mat-list-item>
+                        
+                        <mat-list-item> <strong>Job Description: </strong> {{this.viewjob.jd }}    
+                        </mat-list-item>
+                                   
+                      </mat-list>
+                      <button class ="view-btn2" mat-raised-button color="primary"(click)="okjob()">OK</button>
+                    </mat-card>

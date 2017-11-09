@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { MatTabsModule } from '@angular/material';
-import { MatButtonModule } from '@angular/material';
+import { MatButtonModule,MatListModule } from '@angular/material';
 
 import { Observable } from 'rxjs';
 
@@ -39,7 +39,14 @@ export class AdminComponent implements OnInit {
 
   currentUserKey;
   currentUser;
+  viewMode = false;
+  compviewMode =false;
+  jobview = false;
 
+  viewstd = {key:'',username:'', fullname:'',email:'', cgpa:'',skills:'',experience:''}
+  viewcomp= { key: '', username: '', cname: '', email: '', address: '', contact: ''}
+  viewjob=  {key: '', jt: '', jd: '',cname: '', email: '' }
+  
   constructor(private sb3: FormBuilder, private router: Router, private af: AngularFireAuth, private db: AngularFireDatabase, public authService: AuthService) {
 
 
@@ -97,8 +104,35 @@ export class AdminComponent implements OnInit {
 
   ngOnInit() {
   }
-  
+  viewstdDetail(student) {
+    this.viewMode = true;
+ console.log (student);
+ this.viewstd = { key: student.key, username: student.username, email: student.email, fullname: student.fullname, cgpa: student.cgpa, skills: student.skills, experience: student.experience};
+ console.log (this.viewstd);
+  }
+  viewComDetail(company) {
+    this.compviewMode = true;
+    console.log(company);
+    this.viewcomp= { key: company.key, username: company.username, cname: company.cname, email: company.email, address: company.address, contact:company.contact};
+  }
 
+ viewjobDetail(job) {
+ this.jobview = true;
+ console.log(job);
+ this.viewjob= {key: job.key, jt: job.jt, jd: job.jd,cname: job.cname, email: job.email }
+}
+
+ok(){
+  this.viewMode = false;
+}
+
+okjob(){
+  this.jobview = false;
+}
+okcmp(){
+  this.compviewMode =false;
+
+}
 
   removeDetail(key: string) {
     this.studentsRef.remove(key);
