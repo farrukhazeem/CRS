@@ -63,7 +63,7 @@
 
 
 
-<mat-card class="stdcmp" *ngIf="!editMode && !editJob">
+<mat-card class="stdcmp" *ngIf="!editMode && !editJob  && !jobMode" >
     <mat-tab-group>
         <mat-tab label="Company Profile">
             <div class="job-container">
@@ -124,7 +124,7 @@
                             <strong>Applied For: </strong>  {{application.jt}}
                          
                         <button class ="view-btn2" mat-raised-button color="warn" (click)="removestudent(application.key)">Delete</button>
-                        <button class ="view-btn2" mat-raised-button color="primary"(click)="viewDetail()">View Details</button>
+                        <button class ="view-btn2" mat-raised-button color="primary"(click)="viewDetail(application)">View Details</button>
                     </div>
                         
                         <!-- <p> Student name: {{student.username}} </p>
@@ -165,3 +165,17 @@
         </div>
     </form>
 </mat-card>
+
+<mat-card class="stdcmp"  *ngIf="jobMode">
+        <h2>{{this.stdjob.fullname }} </h2>
+        <mat-list>
+            <mat-list-item><strong>Applied For: </strong> {{this.stdjob.jt }}</mat-list-item>
+            <mat-list-item> <strong>Email: </strong> {{this.stdjob.email }}  
+                 </mat-list-item>
+            
+            <mat-list-item> <strong>Job Description: </strong> {{this.stdjob.jd }}    
+            </mat-list-item>
+                       
+          </mat-list>
+          <button class ="view-btn2" mat-raised-button color="primary"(click)="ok()">OK</button>
+        </mat-card>

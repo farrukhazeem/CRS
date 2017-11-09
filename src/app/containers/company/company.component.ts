@@ -44,8 +44,12 @@ export class CompanyComponent {
   addjob = { key: '', jt: '', jd: '' };
   editjob = { key: '', jt: '', jd: '' };
   editPro = { key: '', username: '', cname: '', email: '', address: '', contact: '', accountType: '' }
+  stdjob ={ key: '', fullname:'', email:'', jt: '',jd:'', experience:'', skills:'' }
+  
+  
   editMode = false;
   editJob = false;
+  jobMode = false;
 
   constructor(private sb3: FormBuilder, private router: Router, private af: AngularFireAuth, private db: AngularFireDatabase, public authService: AuthService) {
 
@@ -102,11 +106,21 @@ export class CompanyComponent {
 
   }
 
+  viewDetail(application) {
+  this.jobMode = true;
+ this.stdjob = {key: application.key, fullname: application.fullname, email: application.email, jt: application.jt, jd: application.jd, experience: application.experience, skills: application.skills };
+  console.log (application);
+  }
+
   editProfile(currentUser) {
     this.editMode = true;
     this.editPro = { key: this.currentUser.key, username: this.currentUser.username, email: this.currentUser.email, cname: this.currentUser.cname, address: this.currentUser.address, contact: this.currentUser.contact, accountType: this.currentUser.accountType };
   }
 
+  ok()  {
+this.jobMode = false;
+
+  }
 
   cancelEdit() {
 
