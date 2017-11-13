@@ -55,10 +55,10 @@ export class AuthService {
           ...user,
           username,
           accountType,
-          
         }
         this.authState = user
         this.updateUserData();
+        this.signOut();
         return user;
       })
       .catch(error => console.log(error));
@@ -71,9 +71,8 @@ export class AuthService {
       .then((user) => {
         
         this.authState = user;
-        //this.updateUserData();
+      //  this.updateUserData();
         return user;
-      
       })
       .catch(error => console.log(error));
   }

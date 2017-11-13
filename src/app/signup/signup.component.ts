@@ -49,19 +49,20 @@ export class SignupComponent implements OnInit {
   }
   onSubmit(value: any): void  {
     this.authService.emailSignUp(value.email, value.password, value.username,value.accountType ).then((data) => {
-      if (data) {
-        switch(data.accountType) {
-          case 'company':
-            this.router.navigateByUrl('/company');
-            break;
-          case 'student':
-            this.router.navigateByUrl('/student');
-            break;
+      // this.router.navigateByUrl('/');
+    /*if (data) {
+         switch(data.accountType) {
+          // case 'company':
+            // this.router.navigateByUrl('/company');
+            // break;
+          // case 'student':
+            // this.router.navigateByUrl('/student');
+            // break;
           default :
-            this.router.navigateByUrl('/admin');
-            break;
-        }
-      }
+             this.router.navigateByUrl('/');
+             break;
+         }
+    }*/
   })
 
   }

@@ -34,13 +34,7 @@ export class NavbarComponent implements OnInit {
   }
 
 
-  // ngOnChanges() {
-  //   console.log(this.router.url);
-  //   if(this.router.url === '/' || this.router.url === '/signup'){
-  //     this.isShownLogout=true;
-  //   }
-  //   this.isShownLogout=false;
-  // }
+
 
 
 
