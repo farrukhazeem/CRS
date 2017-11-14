@@ -111,7 +111,7 @@ height:35px;
 .stdcmp {
     position: relative;
     width: calc(100% - 325px);
-    height: 500px;
+   
     margin: 20px;
     display: inline-block;
     vertical-align: top;
